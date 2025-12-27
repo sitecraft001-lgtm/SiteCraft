@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SiteCraft.top – Premium Website Themes</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
+}
+
+body{
+  background:#0b0f14;
+  color:#fff;
+  line-height:1.6;
+}
+
+/* NAVBAR */
+.navbar{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding:25px 8%;
+}
+
+.logo{
+  color:#00b4ff;
+  font-weight:700;
+  font-size:28px;
+  cursor:pointer;
+  transition:0.3s;
+  margin-bottom:12px;
+}
+
+.logo:hover{
+  text-shadow:0 0 10px #00b4ff,0 0 20px #00ffe0;
+  transform:scale(1.1);
+  color:#00ffe0;
+}
+
+.nav-links{
+  display:flex;
+  gap:25px;
+}
+
+.nav-links a{
+  color:#ccc;
+  text-decoration:none;
+  font-size:14px;
+  transition:0.3s;
+}
+
+.nav-links a:hover{
+  color:#00b4ff;
+  text-shadow:0 0 8px #00b4ff;
+}
+
+/* HERO */
+.hero{
+  padding:80px 8%;
+  text-align:center;
+}
+
+.hero-text h2{
+  font-size:42px;
+  line-height:1.2;
+}
+
+.hero-text span{color:#00b4ff;}
+
+.hero-text p{
+  margin:20px 0;
+  color:#aaa;
+}
+
+.hero-text a{
+  display:inline-block;
+  padding:12px 22px;
+  border:none;
+  border-radius:25px;
+  cursor:pointer;
+  font-size:14px;
+  text-decoration:none;
+  transition:0.3s;
+}
+
+.btn-primary{
+  background:#00b4ff;
+  color:#000;
+}
+
+.btn-primary:hover{
+  background:#00ffe0;
+  box-shadow:0 0 12px #00ffe0,0 0 25px #00b4ff;
+  transform:scale(1.05);
+}
+
+.btn-secondary{
+  background:transparent;
+  color:#00b4ff;
+  border:1px solid #00b4ff;
+}
+
+.btn-secondary:hover{
+  background:#00b4ff22;
+  box-shadow:0 0 8px #00b4ff;
+  transform:translateY(-2px);
+}
+
+/* FEATURES */
+.features{
+  padding:60px 8%;
+  text-align:center;
+}
+
+.features h3{
+  font-size:28px;
+  margin-bottom:40px;
+}
+
+.feature-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:20px;
+}
+
+.feature-card{
+  background:#111821;
+  padding:25px;
+  border-radius:15px;
+  border:1px solid #1f2a36;
+  transition:0.3s;
+}
+
+.feature-card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 0 12px #00b4ff44;
+  border-color:#00b4ff;
+}
+
+.feature-card h4{
+  margin-bottom:10px;
+  color:#00b4ff;
+}
+
+.feature-card p{
+  color:#aaa;
+  font-size:14px;
+}
+
+/* INFO */
+.info{
+  padding:70px 8%;
+  text-align:center;
+}
+
+.info-text h3{
+  font-size:26px;
+}
+
+.info-text p{
+  color:#aaa;
+  margin:15px 0;
+}
+
+.info-text a{
+  display:inline-block;
+  padding:12px 22px;
+  border:none;
+  border-radius:25px;
+  cursor:pointer;
+  font-size:14px;
+  text-decoration:none;
+  transition:0.3s;
+}
+
+/* PRICING */
+.pricing{
+  padding:70px 8%;
+  text-align:center;
+}
+
+.pricing h3{
+  font-size:28px;
+  margin-bottom:40px;
+}
+
+.price-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:25px;
+  justify-content:center;
+}
+
+.price-card{
+  background:#111821;
+  padding:30px;
+  border-radius:20px;
+  border:1px solid #1f2a36;
+  transition:0.3s;
+}
+
+.price-card:hover{
+  transform:scale(1.04);
+  box-shadow:0 0 18px #00b4ff44;
+  border-color:#00ffe0;
+}
+
+.price-card h4{
+  color:#00b4ff;
+}
+
+.price{
+  font-size:30px;
+  margin:15px 0;
+}
+
+.price-card p{
+  font-size:14px;
+  color:#aaa;
+}
+
+/* SUBSCRIBE SECTION */
+.subscribe{
+  padding:90px 8%;
+  text-align:center;
+  background:radial-gradient(circle at top, #111a25, #070b10);
+  border-top:1px solid #1f2a36;
+}
+
+.subscribe h3{
+  font-size:34px;
+  margin-bottom:15px;
+  color:#fff;
+  text-shadow:
+    0 0 10px #00b4ff,
+    0 0 25px #00b4ff,
+    0 0 45px #00ffe0;
+  animation:glowText 2.5s infinite alternate;
+}
+
+.subscribe p{
+  font-size:16px;
+  margin-bottom:35px;
+  color:#ccc;
+  text-shadow:0 0 10px #00b4ff55;
+}
+
+@keyframes glowText{
+  from{
+    text-shadow:
+      0 0 10px #00b4ff,
+      0 0 25px #00b4ff;
+  }
+  to{
+    text-shadow:
+      0 0 20px #00ffe0,
+      0 0 45px #00b4ff;
+  }
+}
+
+.subscribe a{
+  display:inline-block;
+  padding:16px 40px;
+  border-radius:40px;
+  background:linear-gradient(45deg,#ff0000,#ff4d4d);
+  color:#fff;
+  text-decoration:none;
+  font-weight:700;
+  letter-spacing:1px;
+  font-size:16px;
+  position:relative;
+  box-shadow:
+    0 0 15px #ff0000,
+    0 0 35px #ff0000;
+  animation:pulse 2s infinite;
+  transition:0.3s;
+}
+
+@keyframes pulse{
+  0%{box-shadow:0 0 15px #ff0000;}
+  50%{box-shadow:0 0 35px #ff4d4d;}
+  100%{box-shadow:0 0 15px #ff0000;}
+}
+
+.subscribe a:hover{
+  transform:scale(1.15);
+  box-shadow:
+    0 0 25px #ff0000,
+    0 0 60px #ff4d4d;
+}
+
+/* FOOTER */
+footer{
+  padding:25px;
+  background:#090c10;
+  text-align:center;
+  color:#666;
+  font-size:13px;
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .hero,.info{
+    padding:60px 5%;
+  }
+
+  .nav-links{
+    flex-wrap:wrap;
+    justify-content:center;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<nav class="navbar">
+  <h1 class="logo">SiteCraft</h1>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="themes.html">Themes</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-text">
+    <h2>Craft Powerful <span>Websites</span></h2>
+    <p>Premium website themes designed for speed, beauty, and performance.</p>
+    <a href="themes.html" class="btn-primary">Browse Themes</a>
+    <a href="demo.html" class="btn-secondary">View Demo</a>
+  </div>
+</section>
+
+<section class="features">
+  <h3>Why SiteCraft?</h3>
+  <div class="feature-grid">
+    <div class="feature-card">
+      <h4>⚡ Fast Performance</h4>
+      <p>Optimized code for speed.</p>
+    </div>
+    <div class="feature-card">
+      <h4>🎨 Modern UI</h4>
+      <p>Clean and premium designs.</p>
+    </div>
+    <div class="feature-card">
+      <h4>🛠 Easy Customize</h4>
+      <p>No coding needed.</p>
+    </div>
+    <div class="feature-card">
+      <h4>📱 Responsive</h4>
+      <p>Perfect on all devices.</p>
+    </div>
+  </div>
+</section>
+
+<section class="info">
+  <div class="info-text">
+    <h3>Why SiteCraft Matters</h3>
+    <p>Launch professional websites faster with ready-made themes crafted for creators.</p>
+    <a href="themes.html" class="btn-primary">Explore Collection</a>
+  </div>
+</section>
+
+<section class="pricing">
+  <h3>Theme Pricing</h3>
+  <div class="price-grid">
+    <div class="price-card">
+      <h4>Starter</h4>
+      <div class="price">₹499</div>
+      <p>Single theme + updates</p>
+    </div>
+    <div class="price-card">
+      <h4>Pro</h4>
+      <div class="price">₹999</div>
+      <p>Multiple pages + support</p>
+    </div>
+    <div class="price-card">
+      <h4>Bundle</h4>
+      <div class="price">₹1999</div>
+      <p>All themes + lifetime updates</p>
+    </div>
+  </div>
+</section>
+
+<section class="subscribe">
+  <h3>🔥 Stay Updated With SiteCraft 🔥</h3>
+  <p>Subscribe this channel for daily updates of my website</p>
+  <a href="https://www.youtube.com/@YourChannelName" target="_blank">
+    🔔 SUBSCRIBE NOW
+  </a>
+</section>
+
+<footer>
+  © 2025 SiteCraft.top – All rights reserved
+</footer>
+
+</body>
+</html>
