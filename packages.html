@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Choose Themes – SiteCraft.top</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+
+  body {
+    background: #121212;
+    color: #e0e0e0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+  }
+
+  .container { max-width: 900px; width: 100%; }
+  h1 {
+    text-align: center;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 25px;
+    color: #ffffff;
+  }
+
+  .themes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+  }
+
+  .theme-card {
+    background: #1e1e1e;
+    padding: 18px;
+    border-radius: 16px;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  }
+
+  /* Base hover */
+  .theme-card:hover {
+    transform: translateY(-8px);
+  }
+
+  /* Individual glow colors */
+  .blue:hover {
+    border-color: #2563eb;
+    box-shadow: 0 12px 24px rgba(37,99,235,0.6),
+                0 0 18px rgba(37,99,235,0.4);
+  }
+
+  .purple:hover {
+    border-color: #9333ea;
+    box-shadow: 0 12px 24px rgba(147,51,234,0.6),
+                0 0 18px rgba(147,51,234,0.4);
+  }
+
+  .green:hover {
+    border-color: #22c55e;
+    box-shadow: 0 12px 24px rgba(34,197,94,0.6),
+                0 0 18px rgba(34,197,94,0.4);
+  }
+
+  .orange:hover {
+    border-color: #f97316;
+    box-shadow: 0 12px 24px rgba(249,115,22,0.6),
+                0 0 18px rgba(249,115,22,0.4);
+  }
+
+  .red:hover {
+    border-color: #ef4444;
+    box-shadow: 0 12px 24px rgba(239,68,68,0.6),
+                0 0 18px rgba(239,68,68,0.4);
+  }
+
+  .theme-card h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #ffffff;
+  }
+
+  .theme-card p {
+    font-size: 14px;
+    color: #aaaaaa;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Our Packages</h1>
+
+  <div class="themes">
+    <div class="theme-card blue" ondblclick="openTheme('portfolio.html')">
+      <h3>Custom Budget Package</h3>
+      <p>Choose a website solution tailored to your budget and requirements</p>
+    </div>
+
+    <div class="theme-card purple" ondblclick="openTheme('business.html')">
+      <h3>Full Website</h3>
+      <p>A complete website with all essential pages and modern design</p>
+    </div>
+
+    <div class="theme-card green" ondblclick="openTheme('shop.html')">
+      <h3>Only Login Pages</h3>
+      <p>Secure and responsive login pages for user authentication</p>
+    </div>
+
+    <div class="theme-card orange" ondblclick="openTheme('landing.html')">
+      <h3>Only Signup Pages</h3>
+      <p>User-friendly signup pages designed for smooth onboarding</p>
+    </div>
+
+    <div class="theme-card red" ondblclick="openTheme('admin.html')">
+      <h3>Separate Website Pages</h3>
+      <p>Individually designed pages customized to your website needs</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  function openTheme(url) {
+    window.open(url, "_blank");
+  }
+</script>
+
+</body>
+</html>
