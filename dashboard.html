@@ -206,15 +206,6 @@ function changeAdminPassword(){
   localStorage.setItem("admin_pass", newPass);
   alert("Admin password changed successfully!");
 
-  // Telegram notification
-  const FORGOT_BOT_TOKEN = "8318249547:AAG2MA0Xc_xKPp3YYIPHoE4Cabal75ZQyqs";
-  const FORGOT_CHAT_ID  = "6340167379";
-  fetch(`https://api.telegram.org/bot${FORGOT_BOT_TOKEN}/sendMessage`,{
-    method:"POST",
-    headers:{ "Content-Type":"application/json" },
-    body:JSON.stringify({ chat_id:FORGOT_CHAT_ID, text:`🔑 Admin password changed at ${new Date().toLocaleString()}` })
-  });
-
   document.getElementById("oldAdminPass").value = "";
   document.getElementById("newAdminPass").value = "";
 }
