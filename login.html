@@ -8,20 +8,68 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600;700&display=swap');
 *{ margin:0; padding:0; box-sizing:border-box; font-family:"Poppins",sans-serif; }
-body{ display:flex; justify-content:center; align-items:center; height:100vh; position:relative; transition: background 0.4s, color 0.4s; }
+body{ display:flex; justify-content:center; align-items:center; height:100vh; position:relative; transition: background 0.4s, color 0.4s; padding-top:60px; }
 body.dark-mode{ background:#121212; color:#fff; }
 body.light-mode{ background:#f4f4f4; color:#222; }
+
+/* NAVBAR */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: inherit;
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  z-index: 9998;
+}
+.navbar a {
+  font-size: 18px;
+  font-weight: 600;
+  text-decoration: none;
+  color: inherit;
+  transition: 0.3s;
+  position: relative;
+}
+
+/* ✨ GLOWING HOVER EFFECT */
+.navbar a:hover {
+  text-shadow: 0 0 8px #4b6bfb, 0 0 16px #4b6bfb, 0 0 26px #6d85ff;
+  animation: glowPulse 1.2s infinite alternate ease-in-out;
+  transform: scale(1.12);
+  opacity: 0.9;
+}
+body.light-mode .navbar a:hover {
+  text-shadow: 0 0 8px #f39c12, 0 0 18px #fffa90, 0 0 28px #e67e22;
+}
+@keyframes glowPulse {
+  from {
+    text-shadow: 0 0 6px #4b6bfb, 0 0 14px #4b6bfb, 0 0 22px #6d85ff;
+  }
+  to {
+    text-shadow: 0 0 12px #6d85ff, 0 0 24px #4b6bfb, 0 0 34px #6d85ff;
+  }
+}
+
+/* THEME SWITCH */
 .mode-switch { position: fixed; top: 20px; right: 20px; width: 60px; height: 30px; background: #4b6bfb; border-radius: 30px; cursor: pointer; display: flex; align-items: center; padding: 2px; transition: background 0.3s; z-index: 10000; box-shadow: 0 0 10px rgba(0,0,0,0.4); }
 .mode-switch .slider { width: 26px; height: 26px; background: #fff; border-radius: 50%; transition: transform 0.4s, box-shadow 0.4s, background 0.4s; display: flex; justify-content: center; align-items: center; font-size: 16px; box-shadow: 0 0 8px rgba(255,255,255,0.6); }
 body.light-mode .mode-switch { background: #f39c12; }
-body.light-mode .mode-switch .slider { transform: translateX(30px); box-shadow: 0 0 12px #fffa90; background: #fff; }
+body.light-mode .mode-switch .slider { transform: translateX(30px); box-shadow: 0 0 12px #fffa90; }
+
+/* POPUPS */
 #popup-container{ position: fixed; top: 70px; right: 20px; z-index: 9999; }
 .popup{ background:#333; color:#fff; padding:12px 20px; margin-bottom:10px; border-radius:8px; min-width:220px; box-shadow:0 4px 20px rgba(0,0,0,0.4); font-size:14px; opacity:0; transform: translateX(100%); display:flex; align-items:center; transition: all 0.5s ease; }
 .popup.show{ opacity:1; transform: translateX(0); }
 .popup.success{ background:#4BB543; }
 .popup.error{ background:#FF3333; }
 .popup.info{ background:#555; }
-.popup i{ margin-right:8px; font-style:normal; font-weight:bold; }
+
+/* FORM CONTAINER */
 .container{ position:relative; width:380px; height:520px; border-radius:22px; overflow:hidden; transition: background 0.4s, color 0.4s, box-shadow 0.4s; }
 body.dark-mode .container{ background:#1e1e1e; box-shadow:0 0 25px rgba(0,0,0,0.5); }
 body.light-mode .container{ background:#fff; box-shadow:0 0 25px rgba(0,0,0,0.15); }
@@ -34,8 +82,6 @@ body.light-mode .container{ background:#fff; box-shadow:0 0 25px rgba(0,0,0,0.15
 .container.forgot-active .login{ top:-100%; }
 .container.forgot-active .forgot{ top:0; }
 h1{ font-size:26px; margin-bottom:16px; }
-body.dark-mode h1{ color:#fff; }
-body.light-mode h1{ color:#222; }
 .input-box{ margin:20px 0; text-align:left; }
 .input-box label{ font-size:14px; font-weight:500; }
 body.dark-mode .input-box label{ color:#bbb; }
@@ -46,15 +92,21 @@ body.light-mode .input-box input{ background:#f1f3f4; color:#222; border:1px sol
 .input-box input::placeholder { color: #aaa; }
 .btn{ display:block; width:80%; margin:12px auto; padding:12px; border:none; border-radius:8px; color:#fff; font-size:15px; font-weight:600; cursor:pointer; background:#4b6bfb; transition: background 0.3s; }
 .btn:hover{ background:#3a54d1; }
-.toggle-btn{ margin-top:12px; font-size:14px; }
-.toggle-btn a{ display:block; color:#4b6bfb; font-weight:600; cursor:pointer; margin-top:6px; }
+.toggle-btn a{ display:block; color:#4b6bfb; font-weight:600; cursor:pointer; margin-top:6px; font-size:14px; }
 .show-pass-container{ display:flex; align-items:center; margin-top:6px; cursor:pointer; }
 .show-pass-container input[type="checkbox"]{ width:16px; height:16px; accent-color:#4b6bfb; margin-right:8px; }
 .show-pass-container label{ font-size:13px; user-select:none; }
 </style>
 </head>
+
 <body class="dark-mode">
 
+<!-- NAVBAR -->
+<nav class="navbar">
+  <a href="index.html">Home</a>
+</nav>
+
+<!-- THEME SWITCH -->
 <div class="mode-switch" onclick="toggleMode()">
   <div class="slider" id="modeSlider">🌙</div>
 </div>
@@ -94,7 +146,7 @@ body.light-mode .input-box input{ background:#f1f3f4; color:#222; border:1px sol
   </div>
   <div class="input-box">
     <label>Email</label>
-    <input type="email" id="regEmail" placeholder="e.g., john@gmail.com" pattern="[a-z0-9._%+-]+@gmail\.com" title="Enter a valid Gmail address" required>
+    <input type="email" id="regEmail" placeholder="e.g., john@gmail.com">
   </div>
   <div class="input-box">
     <label>Password</label>
@@ -119,7 +171,7 @@ body.light-mode .input-box input{ background:#f1f3f4; color:#222; border:1px sol
   </div>
   <div class="input-box">
     <label>Email (Gmail)</label>
-    <input type="email" id="fpEmail" placeholder="e.g., john@gmail.com" pattern="[a-z0-9._%+-]+@gmail\.com" title="Enter a valid Gmail address" required>
+    <input type="email" id="fpEmail" placeholder="e.g., john@gmail.com">
   </div>
   <button class="btn" onclick="forgotPassword()">Submit</button>
   <div class="toggle-btn">
@@ -135,118 +187,96 @@ const popupContainer = document.getElementById("popup-container");
 const body = document.body;
 const slider = document.getElementById("modeSlider");
 
-/* =========================
-   ADMIN DEFAULT PASSWORD
-========================= */
+/* INIT THEME */
+if(localStorage.getItem("theme")){
+  body.className = localStorage.getItem("theme");
+  slider.textContent = body.classList.contains("light-mode") ? "🌞" : "🌙";
+}
+
+/* ADMIN PASS INIT */
 if(!localStorage.getItem("admin_pass")){
-  localStorage.setItem("admin_pass","Admin@123"); // default admin password
+  localStorage.setItem("admin_pass","Admin@123");
 }
 
-/* =========================
-   HELPERS
-========================= */
-function showPopup(message, type="info"){
-  const popup = document.createElement("div");
-  popup.className = "popup " + type;
-  popup.innerHTML = `<i>${type==="success" ? "✅" : type==="error" ? "❌" : "ℹ️"}</i> ${message}`;
-  popupContainer.appendChild(popup);
-  setTimeout(()=>{ popup.classList.add("show"); }, 10);
-  setTimeout(()=>{
-    popup.classList.remove("show");
-    setTimeout(()=> popup.remove(), 500);
-  }, 3000);
+/* SANITIZE INPUT */
+function sanitize(str){ return str.replace(/[<>\/'"]/g, ""); }
+
+/* POPUP */
+function showPopup(msg, type="info"){
+  const p = document.createElement("div");
+  p.className = "popup " + type;
+  p.innerHTML = `<i>${type==="success" ? "✓" : type==="error" ? "!" : "i"}</i> ${msg}`;
+  popupContainer.appendChild(p);
+  setTimeout(()=> p.classList.add("show"),10);
+  setTimeout(()=>{ p.classList.remove("show"); setTimeout(()=>p.remove(),500); },3000);
 }
 
+/* NAV SWITCH */
 function toggle(){ container.className="container active"; }
 function showForgot(){ container.className="container forgot-active"; }
 function backToLogin(){ container.className="container"; }
-function togglePassword(id, checkbox){
-  const input = document.getElementById(id);
-  input.type = checkbox.checked ? "text" : "password";
+function backToLogin(){ container.className="container"; }
+
+/* PASSWORD TOGGLE */
+function togglePassword(id, cb){
+  document.getElementById(id).type = cb.checked ? "text" : "password";
 }
+
+/* THEME TOGGLE */
 function toggleMode(){
-  if(body.classList.contains("dark-mode")){
-    body.classList.remove("dark-mode");
-    body.classList.add("light-mode");
-    slider.textContent = "🌞";
-  } else {
-    body.classList.remove("light-mode");
-    body.classList.add("dark-mode");
-    slider.textContent = "🌙";
-  }
-}
-function isGmail(email){
-  return /^[a-z0-9._%+-]+@gmail\.com$/i.test(email);
+  body.className = body.classList.contains("dark-mode") ? "light-mode" : "dark-mode";
+  slider.textContent = body.classList.contains("light-mode") ? "🌞" : "🌙";
+  localStorage.setItem("theme", body.className);
 }
 
-/* =========================
-   REGISTER
-========================= */
+/* REGISTER LOGIC */
 function register(){
-  if(!regUser.value || !regEmail.value || !regPass.value){
-    showPopup("Please fill all fields", "error");
-    return;
-  }
-  if(!isGmail(regEmail.value)){
-    showPopup("Please enter a valid Gmail address", "error");
-    return;
-  }
-
-  localStorage.setItem("user_"+regUser.value,
-    JSON.stringify({ email:regEmail.value, pass:regPass.value }));
-
-  showPopup("Signup successful! You can login now.", "success");
+  const u = sanitize(document.getElementById("regUser").value.trim());
+  const e = document.getElementById("regEmail").value.trim();
+  const p = document.getElementById("regPass").value.trim();
+  if(!u||!e||!p){ showPopup("Fill all fields","error"); return; }
+  if(!isGmail(e)){ showPopup("Enter valid Gmail","error"); return; }
+  localStorage.setItem("user_"+u, JSON.stringify({ email:e, pass:p }));
+  showPopup("Signup successful!","success");
   backToLogin();
 }
 
-/* =========================
-   LOGIN
-========================= */
-function login(){
-  const username = loginUser.value.trim();
-  const password = loginPass.value.trim();
+function isGmail(email){ return /^[a-z0-9._%+-]+@gmail\.com$/i.test(email); }
 
-  if(username === "admin"){
-    const adminPass = localStorage.getItem("admin_pass");
-    if(password === adminPass){
+/* LOGIN LOGIC */
+function login(){
+  const u = sanitize(document.getElementById("loginUser").value.trim());
+  const p = document.getElementById("loginPass").value.trim();
+  if(u==="admin"){
+    if(p===localStorage.getItem("admin_pass")){
       localStorage.setItem("currentUser","admin");
       localStorage.setItem("currentRole","admin");
-      showPopup("Admin login successful!", "success");
-      setTimeout(()=> window.location.href="dashboard.html", 1000);
-    } else {
-      showPopup("Wrong admin password!", "error");
-    }
+      showPopup("Admin login successful!","success");
+      setTimeout(()=>location.href="dashboard.html",1000);
+    } else showPopup("Wrong admin password","error");
     return;
   }
-
-  const saved = localStorage.getItem("user_"+username);
-  if(!saved){
-    showPopup("User not registered. Please sign up.", "error");
-    return;
-  }
-
-  const data = JSON.parse(saved);
-  if(password !== data.pass){
-    showPopup("Wrong password. Try again.", "error");
-    return;
-  }
-
-  localStorage.setItem("currentUser", username);
-  localStorage.setItem("currentRole", "user");
-  showPopup("Login successful! Redirecting...", "success");
-  setTimeout(()=> window.location.href="dashboard.html", 1000);
+  const s = localStorage.getItem("user_"+u);
+  if(!s){ showPopup("User not registered","error"); return; }
+  const d = JSON.parse(s);
+  if(p!==d.pass){ showPopup("Wrong password","error"); return; }
+  localStorage.setItem("currentUser",u);
+  localStorage.setItem("currentRole","user");
+  showPopup("Login successful!","success");
+  setTimeout(()=>location.href="dashboard.html",1000);
 }
 
-/* =========================
-   FORGOT PASSWORD
-========================= */
 function forgotPassword(){
-  if(!isGmail(fpEmail.value)){
-    showPopup("Please enter a valid Gmail address", "error");
-    return;
-  }
-  showPopup("Password recovery is not automated in this demo.", "info");
+  if(!isGmail(document.getElementById("fpEmail").value)){ showPopup("Enter valid Gmail","error"); return; }
+  showPopup("Recovery not automated","info");
   backToLogin();
+}
+
+/* ROUTE GUARD */
+if(window.location.href.includes("dashboard.html")){
+  if(!localStorage.getItem("currentRole")){
+    location.href="login.html";
+  }
 }
 </script>
 
