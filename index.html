@@ -61,6 +61,44 @@ body{
   text-shadow:0 0 8px #00b4ff;
 }
 
+/* Notification Button */
+.notification-btn {
+  position: absolute;
+  top: 25px;
+  right: 8%;
+  background: #111821;
+  color: #00b4ff;
+  border: 1px solid #00b4ff;
+  padding: 8px 12px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.3s;
+}
+
+.notification-btn:hover {
+  background: #00b4ff;
+  color: #000;
+  box-shadow: 0 0 12px #00b4ff, 0 0 25px #00ffe0;
+}
+
+.notification-badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: #ff0000;
+  color: #fff;
+  font-size: 10px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  border: 1px solid #111821;
+}
+
 /* HERO */
 .hero{
   padding:80px 8%;
@@ -373,9 +411,13 @@ footer{
     <a href="index.html">Home</a>
     <a href="login.html">Account</a>
     <a href="packages.html">Packages</a>
-    <a href="support.html">Support</a>
+    <a href="contact.html">Support</a>
   </div>
 </nav>
+  <a href="notification.html" class="notification-btn">
+  🔔
+  <span class="notification-badge">1</span>
+</a>
 
 <section class="hero">
   <div class="hero-text">
