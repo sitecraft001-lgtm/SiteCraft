@@ -106,6 +106,23 @@
     transform: translateY(-8px);
   }
 
+  /* REMOVE DESCRIPTION SPACE FROM ALL CARDS EXCEPT POPULAR */
+  .theme-card p {
+    display: none;
+    margin: 0;
+    padding: 0;
+    height: 0;
+  }
+
+  .popular p {
+    display: block;
+    height: auto;
+    font-size: 14px;
+    font-weight: 500;
+    color: #cccccc;
+    margin-top: 6px;
+  }
+
   /* POPULAR 3RD CARD */
   .popular {
     border-color: #00ff9d;
@@ -127,13 +144,6 @@
     padding: 4px 12px;
     border-radius: 20px;
     box-shadow: 0 0 10px #00ff9d;
-  }
-
-  .popular p {
-    font-size: 14px;
-    font-weight: 500;
-    color: #cccccc;
-    margin-top: 6px;
   }
 
   @keyframes pulse {
