@@ -47,14 +47,12 @@ body {
   position: relative;
 }
 
-/* GLOWING HOVER TEXT */
 .navbar a:hover {
   color: #00eaff;
   text-shadow: 0 0 8px #00eaff, 0 0 16px #00b3ff, 0 0 24px #0066ff;
   transform: scale(1.1);
 }
 
-/* underline animation */
 .navbar a::after {
   content: "";
   position: absolute;
@@ -92,7 +90,6 @@ h1 {
   gap: 20px;
 }
 
-/* CARD */
 .theme-card {
   background: #1e1e1e;
   padding: 18px;
@@ -100,7 +97,7 @@ h1 {
   border: 2px solid transparent;
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-  text-align: center; /* ✅ text centered */
+  text-align: center;
 }
 
 .theme-card:hover {
@@ -144,7 +141,6 @@ h1 {
   color: #aaaaaa;
 }
 
-/* RESPONSIVE NAVBAR */
 @media (max-width: 600px) {
   .navbar {
     gap: 18px;
@@ -160,7 +156,6 @@ h1 {
 </head>
 <body>
 
-<!-- NAVBAR -->
 <nav class="navbar">
   <a href="index.html">Home</a>
   <a href="login.html">Account</a>
@@ -196,6 +191,13 @@ h1 {
       <h3>Separate Website Pages</h3>
       <p>Individually designed pages customized to your website needs</p>
     </div>
+
+    <!-- NEW CARD -->
+    <div class="theme-card red" ondblclick="openTheme('card6.html')">
+      <h3>HTML Code Store</h3>
+      <p>All basic reusable HTML templates and UI components under ₹15</p>
+    </div>
+
   </div>
 </div>
 
