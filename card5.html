@@ -18,6 +18,7 @@
     min-height: 100vh;
   }
 
+  /* NAVBAR */
   .navbar {
     width: 100%;
     background: #1a1a1a;
@@ -47,8 +48,24 @@
     transform: scale(1.1);
   }
 
+  .navbar a::after {
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    background: #00eaff;
+    left: 0;
+    bottom: -5px;
+    transition: 0.3s ease;
+  }
+
+  .navbar a:hover::after {
+    width: 100%;
+  }
+
+  /* CONTENT */
   .container {
-    max-width: 1200px;
+    max-width: 900px;
     width: 100%;
     margin-top: 100px;
     padding: 20px;
@@ -64,7 +81,7 @@
 
   .themes {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
   }
 
@@ -75,8 +92,6 @@
     border: 2px solid transparent;
     transition: 0.3s ease;
     text-align: center;
-    position: relative;
-    overflow: hidden;
   }
 
   .theme-card:hover {
@@ -91,6 +106,18 @@
     height: 150px;
     object-fit: cover;
     margin-bottom: 10px;
+  }
+
+  .theme-card h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .theme-card p {
+    font-size: 13px;
+    color: #aaaaaa;
+    margin-bottom: 14px;
   }
 
   .btn-group {
@@ -133,17 +160,17 @@
     box-shadow: 0 0 20px #00a2ff;
   }
 
-  .price-ribbon {
-    position: absolute;
-    top: 12px;
-    right: -40px;
-    background: linear-gradient(135deg, #0084ff, #00eaff);
-    color: #fff;
-    font-weight: 700;
-    padding: 6px 60px;
-    transform: rotate(45deg);
-    font-size: 14px;
-    border-radius: 4px;
+  @media (max-width: 600px) {
+    .navbar {
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+    .navbar a {
+      font-size: 14px;
+    }
+    .btn-group {
+      flex-direction: column;
+    }
   }
 </style>
 </head>
@@ -158,56 +185,75 @@
 </nav>
 
 <div class="container">
-  <h1>₹0 - ₹15</h1>
+  <h1>🔥 Premium Website Themes</h1>
 
-  <div class="themes"></div>
+  <div class="themes">
 
+    <div class="theme-card">
+      <img src="https://raw.githubusercontent.com/USERNAME/REPO/main/images/theme1.png">
+      <h3>Portfolio Pro</h3>
+      <p>Modern portfolio theme with smooth animations and responsive layout.</p>
+      <div class="btn-group">
+        <a href="PREVIEW_LINK_1" target="_blank" class="preview-btn">Preview</a>
+        <a href="BUY_LINK_1" target="_blank" class="buy-btn">Buy Now</a>
+      </div>
+    </div>
+
+    <div class="theme-card">
+      <img src="https://raw.githubusercontent.com/USERNAME/REPO/main/images/theme2.png">
+      <h3>Business Boost</h3>
+      <p>Professional business website theme with clean UI and fast performance.</p>
+      <div class="btn-group">
+        <a href="PREVIEW_LINK_2" target="_blank" class="preview-btn">Preview</a>
+        <a href="BUY_LINK_2" target="_blank" class="buy-btn">Buy Now</a>
+      </div>
+    </div>
+
+    <div class="theme-card">
+      <img src="https://raw.githubusercontent.com/USERNAME/REPO/main/images/theme3.png">
+      <h3>Shop Smart</h3>
+      <p>Dark mode e-commerce theme with glowing UI and product layout.</p>
+      <div class="btn-group">
+        <a href="PREVIEW_LINK_3" target="_blank" class="preview-btn">Preview</a>
+        <a href="BUY_LINK_3" target="_blank" class="buy-btn">Buy Now</a>
+      </div>
+    </div>
+
+<div class="theme-card">
+  <div class="price-ribbon">₹8</div>
+  <img src="https://raw.githubusercontent.com/USERNAME/REPO/main/images/theme6.png">
+  <h3>Travel Explorer</h3>
+  <p>Beautiful travel theme with destination sections and clean layout.</p>
+  <div class="btn-group">
+    <a href="https://example.com/travel-preview" target="_blank" class="preview-btn">Preview</a>
+    <a href="https://example.com/travel-buy" target="_blank" class="buy-btn">Buy Now</a>
+  </div>
 </div>
 
-<script>
-const themes = [
-  {price:"₹10", img:"<img src="https://raw.githubusercontent.com/sitecraft001-lgtm/ALL-IMAGES/main/img9.png" alt="Image 9">", title:"Portfolio Pro", desc:"Modern portfolio theme.", preview:"https://sites.google.com/view/sitecraft1/home", buy:"https://sites.google.com/view/sitecraft4/home"},
-  {price:"FREE", img:"theme2.png", title:"Business Boost", desc:"Professional business theme.", preview:"https://sites.google.com/view/sitecraft2/home", buy:"https://sites.google.com/view/sitecraft5/home"},
-  {price:"₹5", img:"theme3.png", title:"Shop Smart", desc:"Dark e-commerce theme.", preview:"https://sites.google.com/view/sitecraft3/home", buy:"https://sites.google.com/view/sitecraft6/home"},
+<div class="theme-card">
+  <div class="price-ribbon">₹8</div>
+  <img src="https://raw.githubusercontent.com/USERNAME/REPO/main/images/theme6.png">
+  <h3>Travel Explorer</h3>
+  <p>Beautiful travel theme with destination sections and clean layout.</p>
+  <div class="btn-group">
+    <a href="https://example.com/travel-preview" target="_blank" class="preview-btn">Preview</a>
+    <a href="https://example.com/travel-buy" target="_blank" class="buy-btn">Buy Now</a>
+  </div>
+</div>
 
-  {price:"₹8", img:"<img src="https://raw.githubusercontent.com/sitecraft001-lgtm/ALL-IMAGES/main/img9.png" alt="Image 9">", title:"Travel Go", desc:"Tours landing page.", preview:"YOUR_LINK_HERE", buy:"YOUR_LINK_HERE"},
-  {price:"₹6", img:"theme7.png", title:"Edu Learn", desc:"Online course theme.", preview:"YOUR_LINK_HERE", buy:"YOUR_LINK_HERE"},
-  {price:"₹4", img:"theme8.png", title:"Gym Fit", desc:"Fitness website theme.", preview:"YOUR_LINK_HERE", buy:"YOUR_LINK_HERE"},
-  {price:"FREE", img:"theme9.png", title:"Food Hub", desc:"Restaurant ordering theme.", preview:"YOUR_LINK_HERE", buy:"YOUR_LINK_HERE"},
-  {price:"₹7", img:"theme10.png", title:"Doctor Care", desc:"Appointment booking.", preview:"YOUR_LINK_HERE", buy:"YOUR_LINK_HERE"},
-  {price:"₹9", img:"theme11.png", title:"Real Estate", desc:"Property listing theme.", preview:"YOUR_LINK_HERE", buy:"YOUR_LINK_HERE"},
-  {price:"₹5", img:"theme12.png", title:"Gaming X", desc:"RGB gaming theme.", preview:"YOUR_LINK_HERE", buy:"YOUR_LINK_HERE"},
-  {price:"₹3", img:"theme13.png", title:"Event Flow", desc:"Event management.", preview:"YOUR_LINK_HERE", buy:"YOUR_LINK_HERE"},
-  {price:"₹2", img:"theme14.png", title:"Crypto Live", desc:"Web3 dashboard.", preview:"YOUR_LINK_HERE", buy:"YOUR_LINK_HERE"},
-  {price:"₹11", img:"theme15.png", title:"Auto Cars", desc:"Car showroom.", preview:"YOUR_LINK_HERE", buy:"YOUR_LINK_HERE"},
+<div class="theme-card">
+  <div class="price-ribbon">₹8</div>
+  <img src="https://raw.githubusercontent.com/USERNAME/REPO/main/images/theme6.png">
+  <h3>Travel Explorer</h3>
+  <p>Beautiful travel theme with destination sections and clean layout.</p>
+  <div class="btn-group">
+    <a href="https://example.com/travel-preview" target="_blank" class="preview-btn">Preview</a>
+    <a href="https://example.com/travel-buy" target="_blank" class="buy-btn">Buy Now</a>
+  </div>
+</div>
 
-  {price:"₹1", img:"sample.png", title:"Sample 16", desc:"Quick add theme.", preview:"YOUR_LINK_HERE", buy:"YOUR_LINK_HERE"},
-  {price:"₹2", img:"sample.png", title:"Sample 17", desc:"Quick add theme.", preview:"YOUR_LINK_HERE", buy:"YOUR_LINK_HERE"},
-  {price:"₹3", img:"sample.png", title:"Sample 18", desc:"Quick add theme.", preview:"YOUR_LINK_HERE", buy:"YOUR_LINK_HERE"},
-  {price:"₹4", img:"sample.png", title:"Sample 19", desc:"Quick add theme.", preview:"YOUR_LINK_HERE", buy:"YOUR_LINK_HERE"},
-  {price:"₹5", img:"sample.png", title:"Sample 20", desc:"Quick add theme.", preview:"YOUR_LINK_HERE", buy:"YOUR_LINK_HERE"},
-  {price:"₹6", img:"sample.png", title:"Sample 21", desc:"Quick add theme.", preview:"YOUR_LINK_HERE", buy:"YOUR_LINK_HERE"},
-  {price:"₹7", img:"sample.png", title:"Sample 22", desc:"Quick add theme.", preview:"YOUR_LINK_HERE", buy:"YOUR_LINK_HERE"},
-  {price:"₹8", img:"sample.png", title:"Sample 23", desc:"Quick add theme.", preview:"YOUR_LINK_HERE", buy:"YOUR_LINK_HERE"},
-  {price:"₹9", img:"sample.png", title:"Sample 24", desc:"Quick add theme.", preview:"YOUR_LINK_HERE", buy:"YOUR_LINK_HERE"},
-  {price:"₹10", img:"sample.png", title:"Sample 25", desc:"Quick add theme.", preview:"YOUR_LINK_HERE", buy:"YOUR_LINK_HERE"}
-];
-
-const box = document.querySelector(".themes");
-themes.forEach(t => {
-  box.innerHTML += `
-  <div class="theme-card">
-    <div class="price-ribbon">${t.price}</div>
-    <img src="${t.img}">
-    <h3>${t.title}</h3>
-    <p>${t.desc}</p>
-    <div class="btn-group">
-      <a href="${t.preview}" class="preview-btn" target="_blank">Preview</a>
-      <a href="${t.buy}" class="buy-btn" target="_blank">Buy Now</a>
-    </div>
-  </div>`;
-});
-</script>
+  </div>
+</div>
 
 </body>
 </html>
