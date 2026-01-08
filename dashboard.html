@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -12,7 +12,9 @@ body {
   background:#0d0d0d;
   color:#fff;
   margin:0;
-  padding:0;
+  padding:15px;
+  text-align: center;
+
 }
 
 /* Back Button */
@@ -30,130 +32,128 @@ body {
   transition: 0.3s;
   box-shadow: 0 2px 10px rgba(0,0,0,0.5);
 }
+.back-btn:hover { background:#5f23c7; }
 
-.back-btn:hover {
-  background: #5f23c7;
+/* Page Heading */
+.page-heading {
+  text-align: center;
+  font-size: 24px;
+  font-weight: 700;
+  margin-top: 15px;
+  margin-bottom: 25px;
+  color: #7b2ff7;
 }
 
-.section {
-  padding:22px;
-}
-
-h3 {
-  font-size:17px;
-  margin-bottom:12px;
-  font-weight:600;
-  color:#bbb;
-}
-
+/* Tool Card Grid */
 .grid {
   display:grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   gap:15px;
+  margin-top:10px;
 }
 
+/* Tool Card */
 .card {
+  display:flex;
+  align-items:center;
   background:#141414;
   border:1px solid #2a2a2a;
   border-radius:14px;
-  padding:15px;
-  text-align:center;
+  padding:12px;
   transition:0.3s;
   cursor:pointer;
   box-shadow:0 2px 10px rgba(0,0,0,0.5);
 }
+.card:hover { transform:translateY(-4px); border-color:#7b2ff7; }
 
-.card:hover {
-  transform:translateY(-5px);
-  border-color:#7b2ff7;
+/* Left Image Area */
+.card img {
+  width:90px;
+  height:90px;
+  object-fit:cover;
+  border-radius:12px;
+  background:#000;
+  border:1px solid #333;
+  margin-right:15px;
 }
 
-.icon {
-  font-size:26px;
-  background:#222;
-  padding:12px;
-  border-radius:50%;
-  display:inline-block;
-  margin-bottom:10px;
+/* Right Text Area */
+.card-content {
+  text-align:left;
+  flex:1;
 }
-
 .tool-name {
-  font-size:15px;
+  font-size:16px;
   font-weight:700;
-}
+  text-align: center;
 
+}
 .desc {
   font-size:12px;
   color:#888;
-  margin-top:6px;
+  margin-top:4px;
   line-height:1.4;
+  text-align: center;
+
 }
 
 @media(max-width:480px){
-  .icon{ font-size:22px; padding:10px; }
-  .tool-name{ font-size:14px; }
+  .card img{ width:70px; height:70px; }
+  .page-heading{ font-size:20px; }
 }
 
 </style>
 </head>
 <body>
 
-<!-- Back Button (opens index page) -->
+<!-- Back Button -->
 <button class="back-btn" onclick="goBack()">← Back</button>
 
-<div class="section">
-  <h3>Popular Tools</h3>
-  <div class="grid">
+<!-- Page Heading -->
+<div class="page-heading">SiteCraft Tools</div>
 
-    <div class="card" onclick="openTool('image-resizer.html')">
-      <div class="icon">🖼</div>
-      <div class="tool-name">Image Resizer</div>
-      <div class="desc">Resize images to popular or custom sizes. Supports drag & drop.</div>
+<div class="grid">
+
+  <!-- Image Resizer Tool Card -->
+  <div class="card" onclick="openTool("resizer.html')">
+    <img src="img_tool_resizer.png" alt="Image Resizer">
+    <div class="card-content">
+      <div class="tool-name">YT Thumbnail Resizer</div>
+      <div class="desc">Quickly resize any image to 1280×720 (16:9)Supports drag & drop.</div>
     </div>
-
-    <div class="card" onclick="openTool('#')">
-      <div class="icon">⚙</div>
-      <div class="tool-name">More Soon</div>
-      <div class="desc">New tools are launching soon. Stay tuned!</div>
-    </div>
-
   </div>
-</div>
-
-<div class="section">
-  <h3>Custom / Future Tools</h3>
-  <div class="grid">
-
-    <div class="card" onclick="openTool('#')">
-      <div class="icon">🛒</div>
-      <div class="tool-name">Cart Manager</div>
-      <div class="desc">Upcoming tool for managing carts in theme store.</div>
-    </div>
-
-    <div class="card" onclick="openTool('#')">
-      <div class="icon">🔊</div>
+<br>
+  <!-- TTS Tool Card -->
+  <div class="card" onclick="openTool('#')">
+    <img src="img_tool_tts.png" alt="TTS Tool">
+    <div class="card-content">
       <div class="tool-name">TTS Converter</div>
-      <div class="desc">Convert text into speech for promo scripts.</div>
+      <div class="desc">Convert text into speech for theme promos and videos.</div>
     </div>
-
-    <div class="card" onclick="openTool('#')">
-      <div class="icon">📦</div>
-      <div class="tool-name">Theme Packager</div>
-      <div class="desc">Bundle themes into downloadable ZIPs.</div>
-    </div>
-
   </div>
+
+  <!-- Theme Packager Tool Card -->
+  <div class="card" onclick="openTool('#')">
+    <img src="img_tool_zip.png" alt="Theme Packager">
+    <div class="card-content">
+      <div class="tool-name">Theme Packager</div>
+      <div class="desc">Bundle website themes into downloadable ZIP files.</div>
+    </div>
+  </div>
+
 </div>
 
 <script>
 function openTool(page){
   if(page !== "#") window.location.href = page;
 }
-
 function goBack(){
   window.location.href = "index.html";
 }
 </script>
-
+<footer>
+<br>
+<marquee behavior="scroll"direction="left">
+© 2026 SiteCraft.top – All rights reserved
+</footer>
 </body>
 </html>
