@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>ZingBook — Python Snippets</title>
 
-<!-- ================== STYLE (INLINE) ================== -->
 <style>
 :root {
   --bg: #0b0f1a;
@@ -27,32 +26,48 @@ body {
   color: var(--text);
 }
 
+/* HEADER */
 .site-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 18px 24px;
+  padding: 16px 20px;
   border-bottom: 1px solid var(--border);
 }
 
-.brand { display: flex; gap: 10px; align-items: center; }
+.brand {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.brand h1 {
+  font-size: 20px;
+}
 
 .nav a {
   color: var(--muted);
   text-decoration: none;
+  font-size: 14px;
 }
 
+/* MAIN */
 .codes {
   max-width: var(--max-width);
   margin: auto;
-  padding: 40px 24px;
+  padding: 30px 16px;
   text-align: center;
 }
 
-.muted { color: var(--muted); }
+.codes h2 {
+  font-size: 26px;
+}
 
+.muted { color: var(--muted); margin-top: 6px; }
+
+/* SEARCH */
 .filters {
-  margin-top: 16px;
+  margin-top: 20px;
   display: flex;
   justify-content: center;
 }
@@ -60,7 +75,8 @@ body {
 .filters input {
   max-width: 520px;
   width: 100%;
-  padding: 12px;
+  padding: 14px;
+  font-size: 16px;
   background: #0e1426;
   color: var(--text);
   border: 1px solid var(--border);
@@ -68,50 +84,65 @@ body {
   text-align: center;
 }
 
+/* SNIPPETS */
 .snippet-list {
   display: grid;
-  gap: 24px;
-  justify-items: center;
+  gap: 20px;
   margin-top: 30px;
 }
 
 .snippet {
   width: 100%;
-  max-width: 900px;
   background: var(--panel);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
 }
 
+/* SNIPPET HEADER */
 .snippet-header {
   padding: 14px;
   border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
 }
 
+.snippet-header h3 {
+  font-size: 16px;
+  text-align: left;
+}
+
+/* BUTTON */
 .btn {
-  padding: 6px 12px;
-  background: var(--panel);
+  padding: 8px 14px;
+  background: #0e1426;
   border: 1px solid var(--border);
   color: var(--text);
   border-radius: 8px;
   cursor: pointer;
+  font-size: 14px;
 }
 
+/* CODE */
 .code-block {
   padding: 16px;
   background: #0e1426;
   overflow-x: auto;
   text-align: left;
+  font-size: 14px;
 }
 
 .code-block code {
   font-family: monospace;
-  font-size: 14px;
+  white-space: pre;
 }
 
+/* TAGS */
 .snippet-meta {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   gap: 8px;
   padding: 12px;
@@ -120,24 +151,48 @@ body {
 .tag {
   background: var(--tag);
   color: var(--muted);
-  padding: 4px 10px;
+  padding: 5px 12px;
   border-radius: 999px;
   font-size: 12px;
 }
 
+/* FOOTER */
 .site-footer {
   margin-top: 40px;
   padding: 20px;
   border-top: 1px solid var(--border);
   text-align: center;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* 📱 MOBILE FIXES */
+@media (max-width: 600px) {
+  .site-header {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .snippet-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .btn {
+    width: 100%;
+  }
+
+  .codes h2 {
+    font-size: 22px;
+  }
 }
 </style>
 
-<!-- SNIPPETS FILE -->
 <script src="snippets.js"></script>
 </head>
 
 <body>
+
 <header class="site-header">
   <div class="brand">
     <span>🐍</span>
@@ -153,7 +208,7 @@ body {
   <p class="muted">All snippets load from one file</p>
 
   <div class="filters">
-    <input id="search" type="search" placeholder="Search snippets" />
+    <input id="search" type="search" placeholder="Search snippets…" />
   </div>
 
   <section id="snippetList" class="snippet-list"></section>
@@ -163,9 +218,7 @@ body {
   © 2026 ZingBook
 </footer>
 
-<!-- ================== SCRIPT (INLINE) ================== -->
 <script>
-// Render snippets
 const list = document.getElementById("snippetList");
 
 SNIPPETS.forEach(s => {
@@ -189,18 +242,16 @@ SNIPPETS.forEach(s => {
   list.appendChild(el);
 });
 
-// Copy
 document.addEventListener("click", async e => {
   const btn = e.target.closest(".copy-btn");
   if (!btn) return;
 
   const code = document.getElementById(btn.dataset.id);
   await navigator.clipboard.writeText(code.textContent);
-  btn.textContent = "Copied!";
+  btn.textContent = "Copied ✓";
   setTimeout(() => btn.textContent = "Copy", 1200);
 });
 
-// Search
 document.getElementById("search").addEventListener("input", e => {
   const q = e.target.value.toLowerCase();
   document.querySelectorAll(".snippet").forEach(s => {
