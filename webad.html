@@ -2,300 +2,196 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>ZingBook -- Python Snippets</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ad</title>
+
+<!-- IMMEDIATE IMAGE LOAD -->
+<link rel="preconnect" href="https://raw.githubusercontent.com">
+<link rel="dns-prefetch" href="https://raw.githubusercontent.com">
+<link rel="preload"
+      as="image"
+      href="https://raw.githubusercontent.com/sitecraft001-lgtm/dashimage/main/61.png"
+      fetchpriority="high">
 
 <style>
-:root {
-  --bg: radial-gradient(1000px 600px at top, #111836, #05070d);
-  --panel: rgba(20, 26, 48, 0.92);
-  --panel-soft: rgba(255,255,255,0.04);
-  --text: #e8ecf6;
-  --muted: #9aa3b2;
-  --border: rgba(255,255,255,0.08);
-  --accent: #6cf2c2;
-  --accent-soft: rgba(108,242,194,0.25);
-  --shadow: 0 25px 60px rgba(0,0,0,0.6);
-  --radius: 18px;
-  --max-width: 1200px;
-}
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { height: 100%; }
 
 body {
-  font-family: Inter, system-ui, sans-serif;
-  background: var(--bg);
-  color: var(--text);
-}
-
-/* HEADER */
-.site-header {
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  padding: 18px 22px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--border);
-}
-
-.brand h1 {
-  font-size: 20px;
-}
-
-.nav a {
-  color: var(--muted);
-  text-decoration: none;
-  font-size: 14px;
-}
-
-.nav a:hover {
-  color: var(--accent);
-}
-
-/* MAIN */
-.codes {
-  max-width: var(--max-width);
-  margin: auto;
-  padding: 48px 16px;
-  text-align: center;
-}
-
-.codes h2 {
-  font-size: 32px;
-}
-
-.muted {
-  margin-top: 8px;
-  color: var(--muted);
-}
-
-/* SEARCH */
-.search-box {
-  margin-top: 32px;
-  display: flex;
-  justify-content: center;
-}
-
-.search-box input {
-  width: 100%;
-  max-width: 560px;
-  padding: 16px 18px;
-  font-size: 15px;
-  background: rgba(10,14,30,0.95);
-  color: var(--text);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-}
-
-/* GRID */
-.snippet-list {
-  display: grid;
-  gap: 30px;
-  margin-top: 48px;
-}
-
-/* CARD */
-.snippet {
-  background: linear-gradient(180deg, var(--panel), rgba(12,16,32,0.95));
-  border-radius: var(--radius);
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow);
+  background: #000;
   overflow: hidden;
-  transition: transform 0.3s ease;
-}
-
-.snippet:hover {
-  transform: translateY(-10px);
-}
-
-/* HEADER */
-.snippet-header {
-  padding: 18px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid var(--border);
-}
-
-.btn {
-  padding: 8px 16px;
-  border-radius: 10px;
-  background: #0f1430;
-  border: 1px solid var(--border);
-  color: var(--text);
   cursor: pointer;
 }
 
-/* CODE */
-.code-block {
-  background: #070b1f;
-  padding: 18px;
-  font-size: 14px;
-  overflow-x: auto;
+/* FADE */
+.fade {
+  position: fixed;
+  inset: 0;
+  transition: opacity .35s ease;
+}
+.fade.out {
+  opacity: 0;
 }
 
-.code-block code {
-  font-family: "JetBrains Mono", monospace;
+/* IMAGE */
+.image-wrap {
+  position: fixed;
+  inset: 0;
+}
+.image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
-/* TAGS */
-.snippet-meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
+/* UI */
+.ui {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* TIMER */
+.timer {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  width: 52px;
+  height: 52px;
+}
+
+.timer svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.timer circle {
+  fill: none;
+  stroke-width: 4;
+  stroke-linecap: round;
+}
+
+.track { stroke: rgba(255,255,255,.3); }
+.progress {
+  stroke: #22c55e;
+  stroke-dasharray: 157;
+  stroke-dashoffset: 157;
+  transition: stroke-dashoffset 3s linear;
+}
+
+.count {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+/* SKIP */
+.skip {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(0,0,0,.65);
+  border: 1px solid rgba(255,255,255,.35);
+  display: none;
+  align-items: center;
   justify-content: center;
-  padding: 16px;
-  background: var(--panel-soft);
+  pointer-events: auto;
+  cursor: pointer;
 }
 
-.tag {
-  padding: 6px 14px;
-  border-radius: 999px;
-  font-size: 12px;
-  color: var(--muted);
-  background: rgba(255,255,255,0.06);
-}
-
-/* SHOW MORE */
-.show-more {
-  margin-top: 42px;
-  display: flex;
-  justify-content: center;
-}
-
-.show-more button {
-  padding: 12px 28px;
-  border-radius: 16px;
-  background: #0f1430;
-  border: 1px solid var(--border);
-  color: var(--text);
-}
-
-/* FOOTER */
-.site-footer {
-  margin-top: 64px;
-  padding: 24px;
-  border-top: 1px solid var(--border);
-  text-align: center;
-  font-size: 13px;
-  color: var(--muted);
+.skip svg {
+  width: 15px;
+  height: 15px;
+  stroke: #fff;
+  stroke-width: 2.5;
 }
 </style>
 </head>
 
 <body>
 
-<header class="site-header">
-  <div class="brand">
-    <h1>ZingBook</h1>
-  </div>
-  <nav class="nav">
-    <a href="packages.html">Browse Web Store</a>
-  </nav>
-</header>
+<div class="fade" id="fade">
 
-<main class="codes">
-  <h2>Python Snippets</h2>
-  <p class="muted">Search • Copy • Enjoy</p>
-
-  <div class="search-box">
-    <input id="search" type="search" placeholder="Search Your snippets…" />
+  <!-- IMAGE LOADS IMMEDIATELY -->
+  <div class="image-wrap" id="imageScreen">
+    <img
+      src="https://raw.githubusercontent.com/sitecraft001-lgtm/dashimage/main/61.png"
+      alt="Dashimage 61"
+      decoding="async"
+      fetchpriority="high"
+    >
   </div>
 
-  <section id="snippetList" class="snippet-list"></section>
+  <div class="ui">
+    <!-- SKIP -->
+    <div class="skip" id="skipBtn" aria-label="Skip">
+      <svg viewBox="0 0 24 24" fill="none">
+        <path d="M6 6l12 12M18 6L6 18"/>
+      </svg>
+    </div>
 
-  <div class="show-more">
-    <button id="showMoreBtn">Show More</button>
+    <!-- TIMER -->
+    <div class="timer">
+      <svg viewBox="0 0 56 56">
+        <circle class="track" cx="28" cy="28" r="25"/>
+        <circle class="progress" cx="28" cy="28" r="25"/>
+      </svg>
+      <div class="count" id="count">3</div>
+    </div>
   </div>
-</main>
 
-<footer class="site-footer">
-  © 2026 ZingBook
-</footer>
+</div>
 
 <script>
-/* ===== SNIPPET LOGIC ===== */
-const list = document.getElementById("snippetList");
-const search = document.getElementById("search");
-const showMoreBtn = document.getElementById("showMoreBtn");
+const REDIRECT_URL = "https://sitecraft.top";
 
-let visible = 5;
-const STEP = 5;
-let filtered = [];
+const fade = document.getElementById("fade");
+const progress = document.querySelector(".progress");
+const skip = document.getElementById("skipBtn");
+const countEl = document.getElementById("count");
+const imageScreen = document.getElementById("imageScreen");
 
-function render() {
-  list.innerHTML = "";
-  filtered.slice(0, visible).forEach(s => {
-    const el = document.createElement("article");
-    el.className = "snippet";
-    el.innerHTML = `
-      <header class="snippet-header">
-        <h3>${s.title}</h3>
-        <button class="btn copy-btn" data-id="${s.id}">Copy</button>
-      </header>
-      <pre class="code-block"><code id="${s.id}">${s.code}</code></pre>
-      <footer class="snippet-meta">
-        ${s.tags.map(t => `<span class="tag">${t}</span>`).join("")}
-      </footer>
-    `;
-    list.appendChild(el);
-  });
-  showMoreBtn.style.display = visible < filtered.length ? "inline-block" : "none";
-}
+let time = 3;
+let locked = true;
 
-function filter() {
-  const q = search.value.toLowerCase();
-  visible = STEP;
-  filtered = SNIPPETS.filter(s =>
-    (s.title + s.code + s.tags.join(" ")).toLowerCase().includes(q)
-  );
-  render();
-}
-
-search.addEventListener("input", filter);
-showMoreBtn.addEventListener("click", () => {
-  visible += STEP;
-  render();
+/* Start ring immediately */
+requestAnimationFrame(() => {
+  progress.style.strokeDashoffset = "0";
 });
 
-document.addEventListener("click", async e => {
-  const btn = e.target.closest(".copy-btn");
-  if (!btn) return;
-  const code = document.getElementById(btn.dataset.id);
-  await navigator.clipboard.writeText(code.textContent);
-  btn.textContent = "Copied ✓";
-  setTimeout(() => btn.textContent = "Copy", 1200);
-});
+/* Countdown */
+const timer = setInterval(() => {
+  time--;
+  countEl.textContent = time;
 
-filtered = [...SNIPPETS];
-render();
+  if (time <= 0) {
+    clearInterval(timer);
+    skip.style.display = "flex";
+    locked = false;
+  }
+}, 1000);
 
-/* ===== AUTO AD REDIRECT (2 MIN, REPEATING) ===== */
-const AD_URL = "webad.html"; // your ad page
-const AD_DELAY = 2 * 60 * 1000; // 2 minutes
-let adTimer;
-
-function resetAdTimer() {
-  clearTimeout(adTimer);
-  adTimer = setTimeout(() => {
-    window.location.href = AD_URL;
-  }, AD_DELAY);
+/* Redirect */
+function go() {
+  if (locked) return;
+  fade.classList.add("out");
+  setTimeout(() => {
+    window.location.href = REDIRECT_URL;
+  }, 300);
 }
 
-["mousemove", "keydown", "scroll", "click"].forEach(event =>
-  document.addEventListener(event, resetAdTimer)
-);
-
-resetAdTimer();
+skip.onclick = go;
+imageScreen.onclick = go;
 </script>
 
-<script src="snippets.js"></script>
 </body>
 </html>
