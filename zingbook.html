@@ -1,4 +1,4 @@
-<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
@@ -43,17 +43,6 @@ body {
   align-items: center;
   backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border);
-  transition: background 0.4s ease;
-}
-
-.site-header:hover {
-  background: rgba(15,20,40,0.75);
-}
-
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 10px;
 }
 
 .brand h1 {
@@ -64,12 +53,10 @@ body {
   color: var(--muted);
   text-decoration: none;
   font-size: 14px;
-  transition: color 0.25s ease, text-shadow 0.25s ease;
 }
 
 .nav a:hover {
   color: var(--accent);
-  text-shadow: 0 0 12px var(--accent-soft);
 }
 
 /* MAIN */
@@ -105,20 +92,6 @@ body {
   color: var(--text);
   border: 1px solid var(--border);
   border-radius: 16px;
-  outline: none;
-  transition: 
-    border 0.3s ease,
-    box-shadow 0.3s ease,
-    transform 0.2s ease;
-}
-
-.search-box input:hover {
-  transform: scale(1.01);
-}
-
-.search-box input:focus {
-  border-color: var(--accent);
-  box-shadow: 0 0 0 4px var(--accent-soft);
 }
 
 /* GRID */
@@ -130,37 +103,16 @@ body {
 
 /* CARD */
 .snippet {
-  position: relative;
   background: linear-gradient(180deg, var(--panel), rgba(12,16,32,0.95));
   border-radius: var(--radius);
   border: 1px solid var(--border);
   box-shadow: var(--shadow);
   overflow: hidden;
-  transition: 
-    transform 0.45s cubic-bezier(.2,.8,.2,1),
-    box-shadow 0.45s ease;
-}
-
-.snippet::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(
-    400px 120px at top,
-    rgba(108,242,194,0.15),
-    transparent
-  );
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-
-.snippet:hover::before {
-  opacity: 1;
+  transition: transform 0.3s ease;
 }
 
 .snippet:hover {
-  transform: translateY(-12px) scale(1.015);
-  box-shadow: 0 45px 90px rgba(0,0,0,0.8);
+  transform: translateY(-10px);
 }
 
 /* HEADER */
@@ -172,44 +124,13 @@ body {
   border-bottom: 1px solid var(--border);
 }
 
-.snippet-header h3 {
-  font-size: 18px;
-}
-
-/* BUTTON */
 .btn {
-  position: relative;
   padding: 8px 16px;
   border-radius: 10px;
-  background: linear-gradient(135deg, #1a2140, #0f1430);
+  background: #0f1430;
   border: 1px solid var(--border);
   color: var(--text);
   cursor: pointer;
-  overflow: hidden;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.btn::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    120deg,
-    transparent,
-    rgba(255,255,255,0.2),
-    transparent
-  );
-  transform: translateX(-100%);
-}
-
-.btn:hover::after {
-  transform: translateX(100%);
-  transition: transform 0.6s ease;
-}
-
-.btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 14px 30px rgba(0,0,0,0.6);
 }
 
 /* CODE */
@@ -218,16 +139,10 @@ body {
   padding: 18px;
   font-size: 14px;
   overflow-x: auto;
-  transition: box-shadow 0.3s ease;
-}
-
-.snippet:hover .code-block {
-  box-shadow: inset 0 0 0 1px rgba(108,242,194,0.15);
 }
 
 .code-block code {
   font-family: "JetBrains Mono", monospace;
-  white-space: pre;
 }
 
 /* TAGS */
@@ -246,19 +161,6 @@ body {
   font-size: 12px;
   color: var(--muted);
   background: rgba(255,255,255,0.06);
-  cursor: pointer;
-  transition: 
-    transform 0.2s ease,
-    background 0.25s ease,
-    color 0.25s ease,
-    box-shadow 0.25s ease;
-}
-
-.tag:hover {
-  transform: translateY(-3px);
-  background: var(--accent-soft);
-  color: var(--accent);
-  box-shadow: 0 6px 16px rgba(108,242,194,0.35);
 }
 
 /* SHOW MORE */
@@ -271,17 +173,9 @@ body {
 .show-more button {
   padding: 12px 28px;
   border-radius: 16px;
-  font-size: 15px;
-  background: linear-gradient(135deg, #1a2140, #0f1430);
+  background: #0f1430;
   border: 1px solid var(--border);
   color: var(--text);
-  cursor: pointer;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.show-more button:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 45px rgba(0,0,0,0.7);
 }
 
 /* FOOTER */
@@ -294,15 +188,12 @@ body {
   color: var(--muted);
 }
 </style>
-
-<script src="snippets.js"></script>
 </head>
 
 <body>
 
 <header class="site-header">
   <div class="brand">
-    <span></span>
     <h1>ZingBook</h1>
   </div>
   <nav class="nav">
@@ -330,6 +221,7 @@ body {
 </footer>
 
 <script>
+/* ===== SNIPPET LOGIC ===== */
 const list = document.getElementById("snippetList");
 const search = document.getElementById("search");
 const showMoreBtn = document.getElementById("showMoreBtn");
@@ -384,7 +276,26 @@ document.addEventListener("click", async e => {
 
 filtered = [...SNIPPETS];
 render();
+
+/* ===== AUTO AD REDIRECT (2 MIN, REPEATING) ===== */
+const AD_URL = "webad.html"; // your ad page
+const AD_DELAY = 2 * 60 * 1000; // 2 minutes
+let adTimer;
+
+function resetAdTimer() {
+  clearTimeout(adTimer);
+  adTimer = setTimeout(() => {
+    window.location.href = AD_URL;
+  }, AD_DELAY);
+}
+
+["mousemove", "keydown", "scroll", "click"].forEach(event =>
+  document.addEventListener(event, resetAdTimer)
+);
+
+resetAdTimer();
 </script>
 
+<script src="snippets.js"></script>
 </body>
 </html>
