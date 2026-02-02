@@ -283,6 +283,64 @@ render();
 /* ===== AUTO REDIRECT REMOVED ===== */
 </script>
 
-<script src="snippets.js"></script>
+<script type="module">
+const list = document.getElementById("snippetList");
+const search = document.getElementById("search");
+
+let SNIPPETS = [];
+let filtered = [];
+
+// load all snippet files
+async function loadAll() {
+  const ids = ["777","650","999"]; // just add new ids here
+  for (let id of ids) {
+    const mod = await import(`./snippets/${id}.js`);
+    SNIPPETS.push(mod.default);
+  }
+  filtered = [...SNIPPETS];
+  render();
+}
+
+function render() {
+  list.innerHTML = "";
+  filtered.forEach(s => {
+    const el = document.createElement("article");
+    el.className = "snippet";
+    el.innerHTML = `
+      <header class="snippet-header">
+        <h3>${s.title}</h3>
+        <button class="btn copy-btn" data-id="${s.id}">Copy</button>
+      </header>
+      <pre class="code-block"><code id="${s.id}">${s.code}</code></pre>
+      <footer class="snippet-meta">
+        ${s.tags.map(t => `<span class="tag">${t}</span>`).join("")}
+      </footer>
+    `;
+    list.appendChild(el);
+  });
+}
+
+function filter() {
+  const q = search.value.toLowerCase();
+  filtered = SNIPPETS.filter(s =>
+    (s.title + s.code + s.tags.join(" ")).toLowerCase().includes(q)
+  );
+  render();
+}
+
+search.addEventListener("input", filter);
+
+document.addEventListener("click", async e => {
+  const btn = e.target.closest(".copy-btn");
+  if (!btn) return;
+  const code = document.getElementById(btn.dataset.id);
+  code.style.userSelect = "text";
+  await navigator.clipboard.writeText(code.textContent);
+  btn.textContent = "Copied ✓";
+  setTimeout(() => btn.textContent = "Copy", 1200);
+});
+
+loadAll();
+</script>
 </body>
 </html>
