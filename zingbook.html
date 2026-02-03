@@ -94,7 +94,7 @@ body {
   outline: none;
 }
 
-/* SEARCH INFO */
+/* INFO */
 .search-instructions {
   margin-top: 12px;
   font-size: 14px;
@@ -211,7 +211,7 @@ body {
   </div>
 
   <div class="search-instructions">
-    <p>💡 Search by title, code, or tags from your YouTube snippets.</p>
+    <p>💡 Search by title, code, or tags.</p>
   </div>
 
   <section id="snippetList" class="snippet-list"></section>
@@ -221,19 +221,30 @@ body {
   © 2026 ZingBook
 </footer>
 
-<!-- ✅ SINGLE CLEAN SCRIPT -->
-<script type="module">
+<!-- ✅ MAIN SCRIPT (NO MODULES) -->
+<script>
 const list = document.getElementById("snippetList");
 const search = document.getElementById("search");
 
-let SNIPPETS = [];
+window.SNIPPETS = [];
 let filtered = [];
 
-async function loadAll() {
-  const ids = ["777","999","770","671","650","420"];
+/* LOAD EXTERNAL JS FILE */
+function loadScript(src) {
+  return new Promise((resolve, reject) => {
+    const s = document.createElement("script");
+    s.src = src;
+    s.onload = resolve;
+    s.onerror = reject;
+    document.body.appendChild(s);
+  });
+}
+
+/* LOAD ALL SNIPPETS */
+async function loadAllSnippets() {
+  const ids = ["777","999","770","671","650","420"]; // ADD MORE IDS HERE
   for (const id of ids) {
-    const mod = await import(`./snippets/${id}.js`);
-    SNIPPETS.push(mod.default);
+    await loadScript(`./snippets/${id}.js`);
   }
   filtered = [...SNIPPETS];
   render();
@@ -258,31 +269,25 @@ function render() {
   });
 }
 
-function filterSnippets() {
+search.addEventListener("input", () => {
   const q = search.value.toLowerCase();
   filtered = SNIPPETS.filter(s =>
-    (s.title + s.code + s.tags.join(" "))
-      .toLowerCase()
-      .includes(q)
+    (s.title + s.code + s.tags.join(" ")).toLowerCase().includes(q)
   );
   render();
-}
-
-search.addEventListener("input", filterSnippets);
+});
 
 document.addEventListener("click", async e => {
   const btn = e.target.closest(".copy-btn");
   if (!btn) return;
-
   const code = document.getElementById(btn.dataset.id);
-  code.style.userSelect = "text";
   await navigator.clipboard.writeText(code.textContent);
-
   btn.textContent = "Copied ✓";
-  setTimeout(() => (btn.textContent = "Copy"), 1200);
+  setTimeout(() => btn.textContent = "Copy", 1200);
 });
 
-loadAll();
+/* START */
+loadAllSnippets();
 </script>
 
 </body>
