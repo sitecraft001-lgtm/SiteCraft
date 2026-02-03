@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>ZingBook -- Python Snippets</title>
+<title>ZingBook — Python Snippets</title>
 
 <style>
 :root {
@@ -14,7 +14,6 @@
   --muted: #9aa3b2;
   --border: rgba(255,255,255,0.08);
   --accent: #6cf2c2;
-  --accent-soft: rgba(108,242,194,0.25);
   --shadow: 0 25px 60px rgba(0,0,0,0.6);
   --radius: 18px;
   --max-width: 1200px;
@@ -92,18 +91,16 @@ body {
   color: var(--text);
   border: 1px solid var(--border);
   border-radius: 16px;
+  outline: none;
 }
 
-/* SEARCH INSTRUCTIONS */
+/* SEARCH INFO */
 .search-instructions {
   margin-top: 12px;
   font-size: 14px;
   color: var(--muted);
   max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-  line-height: 1.5;
+  margin-inline: auto;
 }
 
 .search-instructions p {
@@ -126,15 +123,11 @@ body {
   border: 1px solid var(--border);
   box-shadow: var(--shadow);
   overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
-  cursor: pointer;
+  transition: 0.3s ease;
 }
 
-/* COOL HOVER EFFECT */
 .snippet:hover {
   transform: translateY(-10px) scale(1.02);
-  box-shadow: 0 35px 70px rgba(0,0,0,0.8);
-  filter: brightness(1.05);
 }
 
 /* HEADER */
@@ -161,7 +154,7 @@ body {
   padding: 18px;
   font-size: 14px;
   overflow-x: auto;
-  user-select: none; /* PREVENT SELECTION BY DEFAULT */
+  user-select: none;
 }
 
 .code-block code {
@@ -214,11 +207,11 @@ body {
   <p class="muted">Search • Copy • Enjoy</p>
 
   <div class="search-box">
-    <input id="search" type="search" placeholder="Search Your snippets…" />
+    <input id="search" type="search" placeholder="Search your snippets…" />
   </div>
 
   <div class="search-instructions">
-    <p>💡 How to search your YouTube source code: Type any keyword from your snippet title, code, or tags above.</p>
+    <p>💡 Search by title, code, or tags from your YouTube snippets.</p>
   </div>
 
   <section id="snippetList" class="snippet-list"></section>
@@ -228,61 +221,7 @@ body {
   © 2026 ZingBook
 </footer>
 
-<script>
-/* ===== SNIPPET LOGIC ===== */
-const list = document.getElementById("snippetList");
-const search = document.getElementById("search");
-
-let filtered = [];
-
-function render() {
-  list.innerHTML = "";
-  filtered.forEach(s => {
-    const el = document.createElement("article");
-    el.className = "snippet";
-    el.innerHTML = `
-      <header class="snippet-header">
-        <h3>${s.title}</h3>
-        <button class="btn copy-btn" data-id="${s.id}">Copy</button>
-      </header>
-      <pre class="code-block"><code id="${s.id}">${s.code}</code></pre>
-      <footer class="snippet-meta">
-        ${s.tags.map(t => `<span class="tag">${t}</span>`).join("")}
-      </footer>
-    `;
-    list.appendChild(el);
-  });
-}
-
-function filter() {
-  const q = search.value.toLowerCase();
-  filtered = SNIPPETS.filter(s =>
-    (s.title + s.code + s.tags.join(" ")).toLowerCase().includes(q)
-  );
-  render();
-}
-
-search.addEventListener("input", filter);
-
-document.addEventListener("click", async e => {
-  const btn = e.target.closest(".copy-btn");
-  if (!btn) return;
-  const code = document.getElementById(btn.dataset.id);
-  
-  // ENABLE SELECTION AND COPY
-  code.style.userSelect = "text";
-  await navigator.clipboard.writeText(code.textContent);
-  
-  btn.textContent = "Copied ✓";
-  setTimeout(() => btn.textContent = "Copy", 1200);
-});
-
-filtered = [...SNIPPETS];
-render();
-
-/* ===== AUTO REDIRECT REMOVED ===== */
-</script>
-
+<!-- ✅ SINGLE CLEAN SCRIPT -->
 <script type="module">
 const list = document.getElementById("snippetList");
 const search = document.getElementById("search");
@@ -290,10 +229,9 @@ const search = document.getElementById("search");
 let SNIPPETS = [];
 let filtered = [];
 
-// load all snippet files
 async function loadAll() {
-  const ids = ["777","999","770","671","650","420"]; // just add new ids here
-  for (let id of ids) {
+  const ids = ["777","999","770","671","650","420"];
+  for (const id of ids) {
     const mod = await import(`./snippets/${id}.js`);
     SNIPPETS.push(mod.default);
   }
@@ -320,27 +258,32 @@ function render() {
   });
 }
 
-function filter() {
+function filterSnippets() {
   const q = search.value.toLowerCase();
   filtered = SNIPPETS.filter(s =>
-    (s.title + s.code + s.tags.join(" ")).toLowerCase().includes(q)
+    (s.title + s.code + s.tags.join(" "))
+      .toLowerCase()
+      .includes(q)
   );
   render();
 }
 
-search.addEventListener("input", filter);
+search.addEventListener("input", filterSnippets);
 
 document.addEventListener("click", async e => {
   const btn = e.target.closest(".copy-btn");
   if (!btn) return;
+
   const code = document.getElementById(btn.dataset.id);
   code.style.userSelect = "text";
   await navigator.clipboard.writeText(code.textContent);
+
   btn.textContent = "Copied ✓";
-  setTimeout(() => btn.textContent = "Copy", 1200);
+  setTimeout(() => (btn.textContent = "Copy"), 1200);
 });
 
 loadAll();
 </script>
+
 </body>
 </html>
