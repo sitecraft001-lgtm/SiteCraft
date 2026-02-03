@@ -1,4 +1,8 @@
-<!DOCTYPE html>
+export default {
+  id: "420",
+  title: "Cool Square",
+  tags: ["420", "html", "3D Tunnel"],
+  code: `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -108,4 +112,5 @@
     </div>
   </div>
 </body>
-</html>
+</html>`
+};
