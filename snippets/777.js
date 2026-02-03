@@ -9,5 +9,5 @@ for i in range(5):
     t.right(144)
 turtle.done()
 `,
-  tags: ["python","turtle","graphics"]
+  tags: ["python","turtle"]
 };
