@@ -1,4 +1,8 @@
-import turtle
+export default {
+  id: "650",
+  title: "Avengers Logo",
+  tags: ["650", "python", "Turtle Graphics"],
+  code: `import turtle
 
 def draw_circle(pen):
 	# outer circle
@@ -89,4 +93,5 @@ if __name__ == '__main__':
 	draw_arrow(avengers)
 	
 	avengers.hideturtle()
-	turtle.done()
+	turtle.done()`
+};
