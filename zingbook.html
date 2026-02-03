@@ -19,11 +19,7 @@
   --max-width: 1200px;
 }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
   font-family: Inter, system-ui, sans-serif;
@@ -44,9 +40,7 @@ body {
   border-bottom: 1px solid var(--border);
 }
 
-.brand h1 {
-  font-size: 20px;
-}
+.brand h1 { font-size: 20px; }
 
 .nav a {
   color: var(--muted);
@@ -54,9 +48,7 @@ body {
   font-size: 14px;
 }
 
-.nav a:hover {
-  color: var(--accent);
-}
+.nav a:hover { color: var(--accent); }
 
 /* MAIN */
 .codes {
@@ -66,14 +58,9 @@ body {
   text-align: center;
 }
 
-.codes h2 {
-  font-size: 32px;
-}
+.codes h2 { font-size: 32px; }
 
-.muted {
-  margin-top: 8px;
-  color: var(--muted);
-}
+.muted { margin-top: 8px; color: var(--muted); }
 
 /* SEARCH */
 .search-box {
@@ -126,9 +113,7 @@ body {
   transition: 0.3s ease;
 }
 
-.snippet:hover {
-  transform: translateY(-10px) scale(1.02);
-}
+.snippet:hover { transform: translateY(-10px) scale(1.02); }
 
 /* HEADER */
 .snippet-header {
@@ -157,9 +142,7 @@ body {
   user-select: none;
 }
 
-.code-block code {
-  font-family: "JetBrains Mono", monospace;
-}
+.code-block code { font-family: "JetBrains Mono", monospace; }
 
 /* TAGS */
 .snippet-meta {
@@ -194,12 +177,8 @@ body {
 <body>
 
 <header class="site-header">
-  <div class="brand">
-    <h1>ZingBook</h1>
-  </div>
-  <nav class="nav">
-    <a href="packages.html">Browse Web Store</a>
-  </nav>
+  <div class="brand"><h1>ZingBook</h1></div>
+  <nav class="nav"><a href="packages.html">Browse Web Store</a></nav>
 </header>
 
 <main class="codes">
@@ -217,11 +196,9 @@ body {
   <section id="snippetList" class="snippet-list"></section>
 </main>
 
-<footer class="site-footer">
-  © 2026 ZingBook
-</footer>
+<footer class="site-footer">© 2026 ZingBook</footer>
 
-<!-- ✅ MAIN SCRIPT (NO MODULES) -->
+<!-- ✅ SCRIPT (FINAL) -->
 <script>
 const list = document.getElementById("snippetList");
 const search = document.getElementById("search");
@@ -229,7 +206,7 @@ const search = document.getElementById("search");
 window.SNIPPETS = [];
 let filtered = [];
 
-/* LOAD EXTERNAL JS FILE */
+/* Load external snippet file */
 function loadScript(src) {
   return new Promise((resolve, reject) => {
     const s = document.createElement("script");
@@ -240,9 +217,9 @@ function loadScript(src) {
   });
 }
 
-/* LOAD ALL SNIPPETS */
+/* Load all snippet files */
 async function loadAllSnippets() {
-  const ids = ["777","999","770","671","650","420"]; // ADD MORE IDS HERE
+  const ids = ["777","999","770","671","650","420"]; // ADD IDS HERE
   for (const id of ids) {
     await loadScript(`./snippets/${id}.js`);
   }
@@ -250,6 +227,7 @@ async function loadAllSnippets() {
   render();
 }
 
+/* Render cards */
 function render() {
   list.innerHTML = "";
   filtered.forEach(s => {
@@ -262,21 +240,33 @@ function render() {
       </header>
       <pre class="code-block"><code id="${s.id}">${s.code}</code></pre>
       <footer class="snippet-meta">
-        ${s.tags.map(t => `<span class="tag">${t}</span>`).join("")}
+        ${(s.tags || []).map(t => `<span class="tag">${t}</span>`).join("")}
       </footer>
     `;
     list.appendChild(el);
   });
 }
 
+/* 🔍 SAFE SEARCH */
 search.addEventListener("input", () => {
-  const q = search.value.toLowerCase();
-  filtered = SNIPPETS.filter(s =>
-    (s.title + s.code + s.tags.join(" ")).toLowerCase().includes(q)
-  );
+  const q = search.value.trim().toLowerCase();
+
+  if (!q) {
+    filtered = [...SNIPPETS];
+    render();
+    return;
+  }
+
+  filtered = SNIPPETS.filter(s => {
+    const text =
+      `${s.title || ""} ${s.code || ""} ${(s.tags || []).join(" ")}`.toLowerCase();
+    return text.includes(q);
+  });
+
   render();
 });
 
+/* COPY */
 document.addEventListener("click", async e => {
   const btn = e.target.closest(".copy-btn");
   if (!btn) return;
