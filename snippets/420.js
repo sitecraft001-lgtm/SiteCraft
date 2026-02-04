@@ -113,5 +113,5 @@ SNIPPETS["420"] = {
   </div>
 </body>
 </html>`,
-  tags: ["python","turtle"]
+  tags: ["420","html"]
 };
