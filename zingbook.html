@@ -96,12 +96,15 @@ search.addEventListener("input",()=>{
         <h3>${s.title} <small style="opacity:.6">#${s.id}</small></h3>
         <button class="btn" onclick="copyCode('${s.id}', this)">Copy</button>
       </header>
-      <pre class="code-block"><code id="${s.id}">${s.code}</code></pre>
+      <pre class="code-block"><code id="${s.id}"></code></pre>
       <footer style="padding:14px;display:flex;gap:10px;justify-content:center">
         ${s.tags.map(t=>`<span class="tag">${t}</span>`).join("")}
       </footer>
     </article>
   `;
+
+  // SAFE DISPLAY (no HTML execution)
+  document.getElementById(s.id).textContent = s.code;
 });
 
 /* COPY */
