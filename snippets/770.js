@@ -1,8 +1,8 @@
-export default {
+SNIPPETS["770"] = {
   id: "770",
   title: "Cool Turtle",
-  tags: ["770", "python", "turtle garphics"],
-  code: `from turtle import *
+  code: `
+from turtle import *
 import colorsys
 import math
 
@@ -26,5 +26,7 @@ for i in range(160):
         rt(60)
     rt(137)  
 
-done()`
+done()
+`,
+  tags: ["python","turtle"]
 };
