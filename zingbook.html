@@ -54,6 +54,12 @@ body{
   color:transparent;
 }
 
+/* NO SELECT UI */
+.brand, .nav, .codes h2, .muted, .tags, .site-footer, .snippet-header{
+  user-select:none;
+  -webkit-user-select:none;
+}
+
 .nav a{
   color:var(--muted);
   text-decoration:none;
@@ -102,6 +108,7 @@ body{
 
 /* SNIPPET CARD */
 .snippet{
+  position:relative;
   margin-top:60px;
   background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));
   border:1px solid var(--border);
@@ -109,6 +116,21 @@ body{
   box-shadow:var(--shadow);
   overflow:hidden;
   animation:pop .5s ease;
+}
+
+/* WATERMARK */
+.snippet::after{
+  content:"ZingBook ©";
+  position:absolute;
+  inset:0;
+  font-size:52px;
+  font-weight:700;
+  color:rgba(255,255,255,.04);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  pointer-events:none;
+  transform:rotate(-15deg);
 }
 
 @keyframes pop{
@@ -146,7 +168,7 @@ body{
   box-shadow:0 10px 30px rgba(108,242,194,.4);
 }
 
-/* CODE */
+/* CODE (SELECTABLE) */
 .code-block{
   background:#050814;
   padding:22px;
@@ -156,6 +178,7 @@ body{
   text-align:left;
   line-height:1.6;
   color:#cde2ff;
+  user-select:text;
 }
 
 /* TAGS */
@@ -228,6 +251,7 @@ IDS.forEach(id=>{
   document.body.appendChild(s);
 });
 
+// SEARCH
 search.addEventListener("input",()=>{
   const id = search.value.trim();
   box.innerHTML = "";
@@ -258,12 +282,22 @@ search.addEventListener("input",()=>{
   document.getElementById(s.id).textContent = s.code;
 });
 
+// COPY
 function copyCode(id,btn){
   const code=document.getElementById(id);
   navigator.clipboard.writeText(code.textContent);
   btn.textContent="Copied ✓";
   setTimeout(()=>btn.textContent="Copy",1200);
 }
+
+// BLOCK RIGHT CLICK & DRAG ON CARDS
+document.addEventListener("contextmenu", e=>{
+  if(e.target.closest(".snippet")) e.preventDefault();
+});
+
+document.addEventListener("dragstart", e=>{
+  if(e.target.closest(".snippet")) e.preventDefault();
+});
 </script>
 
 </body>
