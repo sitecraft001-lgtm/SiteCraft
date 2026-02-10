@@ -16,7 +16,7 @@
 }
 
 body{
-  background:#0f0f0f;
+  background:radial-gradient(circle at top, #111827, #000);
   color:#e5e5e5;
   min-height:100vh;
 }
@@ -25,12 +25,13 @@ body{
 .header{
   position:sticky;
   top:0;
-  background:#141414;
+  background:rgba(20,20,20,.8);
+  backdrop-filter:blur(10px);
   padding:16px;
   display:flex;
   align-items:center;
   justify-content:center;
-  box-shadow:0 4px 12px rgba(0,0,0,.6);
+  box-shadow:0 4px 20px rgba(0,0,0,.7);
   z-index:100;
 }
 
@@ -38,28 +39,18 @@ body{
 .back-btn{
   position:absolute;
   left:16px;
-  background:#1f1f1f;
-  border:none;
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.1);
   color:#fff;
   padding:8px 14px;
-  border-radius:8px;
+  border-radius:10px;
   cursor:pointer;
-  font-size:14px;
+  font-size:13px;
   transition:.3s;
-  text-decoration: none;
-  display: inline-block;
 }
 
 .back-btn:hover{
-  background:#2a2a2a;
-}
-
-/* TITLE */
-.header h1{
-  font-size:20px;
-  font-weight:600;
-  color:#ffffff;
-  text-align:center;
+  background:#2563eb;
 }
 
 /* CONTAINER */
@@ -67,98 +58,110 @@ body{
   max-width:760px;
   margin:30px auto;
   padding:0 16px;
-  text-align:center; /* Center all content inside */
 }
 
 /* MONTH TITLE */
-.month-title {
-  font-size: 16px;
-  font-weight: 600;
-  color: #ffffff;
-  margin-bottom: 14px;
-  border-bottom: 1px solid #242424;
-  padding-bottom: 6px;
-  text-align:center; /* Center the month title */
+.month-title{
+  font-size:14px;
+  font-weight:500;
+  color:#9ca3af;
+  margin-bottom:12px;
+  text-align:center;
 }
 
-/* NOTIFICATION CARD */
+/* SLIDE WRAPPER */
+.slide-wrap{
+  position:relative;
+  overflow:hidden;
+  margin-bottom:12px;
+  border-radius:16px;
+}
+
+/* ARROW PANEL */
+.slide-action{
+  position:absolute;
+  right:0;
+  top:0;
+  width:70px;
+  height:100%;
+  background:linear-gradient(135deg,#2563eb,#06b6d4);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:26px;
+  color:white;
+  cursor:pointer;
+  transition:.3s;
+}
+
+/* CARD */
 .notification{
-  background:#161616;
-  border-radius:14px;
-  padding:16px 18px;
-  margin-bottom:14px;
-  border:1px solid #242424;
-  transition:.25s;
-  text-align:center; /* Center card text */
+  background:rgba(255,255,255,.03);
+  border-radius:16px;
+  padding:14px 16px;
+  border:1px solid rgba(255,255,255,.08);
+  transition:.3s;
+  position:relative;
+  backdrop-filter:blur(10px);
 }
 
+.slide-wrap.active .notification{
+  transform:translateX(-70px);
+}
+
+/* HOVERS */
 .notification:hover{
-  background:#1b1b1b;
-  border-color:#2e2e2e;
+  transform:translateY(-4px) scale(1.01);
+  box-shadow:
+    0 0 0 1px rgba(37,99,235,.4),
+    0 10px 40px rgba(37,99,235,.25);
 }
 
-/* HEADER ROW */
+/* CONTENT */
 .notif-header{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  margin-bottom:6px;
 }
 
-/* TITLE */
 .notif-title{
-  font-size:15px;
-  font-weight:600;
-  color:#ffffff;
-  width:100%;
-  text-align:center; /* Center title */
-}
-
-/* DATE */
-.notif-time{
-  font-size:12px;
-  color:#888;
-  white-space:nowrap;
-}
-
-/* MESSAGE */
-.notif-msg{
   font-size:13px;
-  color:#b5b5b5;
-  margin-top:8px;
-  line-height:1.6;
-  text-align:center; /* Center message */
+  font-weight:600;
+  color:#fff;
 }
 
-/* IMPORTANT */
+.notif-time{
+  font-size:10px;
+  color:#9ca3af;
+}
+
+.notif-msg{
+  font-size:11px;
+  color:#cbd5f5;
+  margin-top:6px;
+  line-height:1.5;
+}
+
 .notification.important{
-  border-left:4px solid #2563eb;
-}
-
-/* MOBILE */
-@media(max-width:500px){
-  .notif-title{
-    font-size:14px;
-  }
+  border-left:3px solid #2563eb;
 }
 </style>
 </head>
 
 <body>
 
-<!-- HEADER -->
 <div class="header">
   <button class="back-btn" onclick="window.location.href='index.html'">← Back</button>
   <h1>Notifications</h1>
 </div>
 
-<!-- CONTENT -->
 <div class="container">
 
-   <!-- MONTH TITLE -->
-   <div class="month-title">This Month – January</div>
+<div class="month-title">This Month – January</div>
 
-<div class="notification important">
+<div class="slide-wrap" data-link="policy.html">
+  <div class="slide-action">→</div>
+  <div class="notification important">
     <div class="notif-header">
       <div class="notif-title">Policy Update</div>
       <div class="notif-time">Jan 1 · 2:10 AM</div>
@@ -166,16 +169,13 @@ body{
     <div class="notif-msg">
       Our terms and privacy policy have been updated to improve transparency and security.
     </div>
-    </div>
+  </div>
+</div>
 
+<div class="month-title">Last Month – December</div>
 
-
-<!-- CONTENT -->
-<div class="container">
-
-  <!-- MONTH TITLE -->
-  <div class="month-title">Last Month – December</div>
-
+<div class="slide-wrap" data-link="package.html">
+  <div class="slide-action">→</div>
   <div class="notification important">
     <div class="notif-header">
       <div class="notif-title">New Package Available</div>
@@ -185,7 +185,10 @@ body{
       A new Custom Budget Package has been added. You can now choose flexible pricing based on your needs.
     </div>
   </div>
+</div>
 
+<div class="slide-wrap" data-link="service.html">
+  <div class="slide-action">→</div>
   <div class="notification important">
     <div class="notif-header">
       <div class="notif-title">Service Update</div>
@@ -195,7 +198,10 @@ body{
       Performance improvements have been applied to all hosted themes for faster loading times.
     </div>
   </div>
+</div>
 
+<div class="slide-wrap" data-link="maintenance.html">
+  <div class="slide-action">→</div>
   <div class="notification important">
     <div class="notif-header">
       <div class="notif-title">Maintenance Notice</div>
@@ -205,11 +211,26 @@ body{
       Scheduled maintenance may cause brief interruptions between 1:00 AM and 2:00 AM IST.
     </div>
   </div>
-
-  
-  </div>
+</div>
 
 </div>
+
+<script>
+document.querySelectorAll('.slide-wrap').forEach(card => {
+
+  card.querySelector('.notification').addEventListener('click', () => {
+    document.querySelectorAll('.slide-wrap').forEach(c => {
+      if(c !== card) c.classList.remove('active');
+    });
+    card.classList.toggle('active');
+  });
+
+  card.querySelector('.slide-action').addEventListener('click', () => {
+    window.location.href = card.getAttribute('data-link');
+  });
+
+});
+</script>
 
 </body>
 </html>
