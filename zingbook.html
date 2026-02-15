@@ -235,7 +235,7 @@ body::before{
 </header>
 
 <main class="codes">
-  <h2>Python Snippets</h2>
+  <h2>Python Snippets</h2><br>
   <p class="muted" id="status">Enter snippet ID only</p>
 
   <div class="search-box">
@@ -243,25 +243,25 @@ body::before{
   </div>
 
   <!-- INSTRUCTIONS -->
-  <div class="instructions">
+  <div class="instructions" id="instructions">
     <center><h4>How to Use ZingBook</h4>
-    <ul>
-      <p>1. Open YouTube and Search for Code Zing</p><br>
-      <p>2. Get Snippet ID from video from Video Description Or Pinned comment</p><br>
-      <p>3. Paste it in the Search box and Copy your code. Enjoy! 🎉</p>
-      </center>
-    </ul>
+    <p>1. Open YouTube and Search for Code Zing</p>
+    <p>2. Get Snippet ID from video description or pinned comment</p><br>
+    <p>3. Paste it in the search box and copy your code. Enjoy! 🎉</p>
+    </center>
   </div>
 
   <section id="snippetBox"></section>
 </main>
-<b><footer class="site-footer">© 2026 ZingBook - All Rights Reserved</footer></br>
+
+<footer class="site-footer">© 2026 ZingBook - All Rights Reserved</footer>
 
 <script>
 window.SNIPPETS = {};
 const box = document.getElementById("snippetBox");
 const search = document.getElementById("search");
 const statusText = document.getElementById("status");
+const instructions = document.getElementById("instructions");
 
 const IDS = ["777","999","770","671","650","420","01"];
 
@@ -278,13 +278,14 @@ search.addEventListener("input",()=>{
   if(!SNIPPETS[id]){
     statusText.textContent = "No snippet found";
     statusText.style.color = "red";
+    instructions.style.display = "block";
     return;
-    
   }
 
   const s = SNIPPETS[id];
   statusText.textContent = "Snippet loaded ✓";
   statusText.style.color = "green";
+  instructions.style.display = "none";
 
   const wrapper = document.createElement("div");
   wrapper.className = "snippet-wrapper";
