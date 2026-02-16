@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Output</title>
+<style>
+  /* Fullscreen reset */
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* Hide unwanted scrollbars */
+  }
+
+  /* Container for user content to fit perfectly */
+  #preview {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+</style>
+</head>
+<body>
+<div id="preview"></div>
+
+<script>
+  const preview = document.getElementById('preview');
+
+  // Get project from localStorage
+  const p = JSON.parse(localStorage.getItem("liveProject") || '{}');
+
+  // Create a style tag
+  const styleTag = document.createElement('style');
+  styleTag.textContent = p.css || '';
+  document.head.appendChild(styleTag);
+
+  // Insert HTML content into preview container
+  preview.innerHTML = p.html || '';
+
+  // Execute JS safely
+  if(p.js){
+    const script = document.createElement('script');
+    script.textContent = p.js;
+    preview.appendChild(script);
+  }
+</script>
+</body>
+</html>
