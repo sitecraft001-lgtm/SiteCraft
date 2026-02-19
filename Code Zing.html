@@ -78,8 +78,10 @@
         <!-- Mobile Menu (Hidden by default) -->
         <div id="mobile-menu" class="hidden md:hidden bg-zinc-900 border-b border-white/10">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#home" class="block text-white hover:bg-zinc-800 px-3 py-2 rounded-md text-base font-medium">Home</a>
-                <a href="#editor" class="block text-orange-500 hover:bg-zinc-800 px-3 py-2 rounded-md text-base font-medium">Playground</a>
+                <center><a href="#home" class="block text-white hover:bg-zinc-800 px-3 py-2 rounded-md text-base font-medium">All Projects Here</a></center>
+                <a href="#editor" class="block text-orange-500 hover:bg-zinc-800 px-3 py-2 rounded-md text-base font-medium">SiteCraft</a>
+ <a href="#editor" class="block text-orange-500 hover:bg-zinc-800 px-3 py-2 rounded-md text-base font-medium">Playground</a>
+
                 <a href="#portfolio" class="block text-gray-300 hover:bg-zinc-800 px-3 py-2 rounded-md text-base font-medium">Portfolio</a>
                 <a href="#contact" class="block text-gray-300 hover:bg-zinc-800 px-3 py-2 rounded-md text-base font-medium">Contact</a>
             </div>
@@ -96,16 +98,15 @@
             <!-- Text Content -->
             <div class="order-2 lg:order-1 space-y-8">
                 <div class="inline-block px-4 py-2 rounded-full bg-zinc-900 border border-white/10 text-orange-500 font-semibold text-sm">
-                    Hello, Welcome
+                    Hey, Welcome
                 </div>
                 <h1 class="text-5xl md:text-7xl font-bold text-white leading-tight">
                     I'm Code <span class="text-orange-500">Zing</span><br>
-                    Building Apps That Scale
+                    Creator 
                 </h1>
                 <p class="text-gray-400 text-lg max-w-lg leading-relaxed">
-                    I build interactive web experiences with modern technologies. 
-                    Merging clean code with stunning design to bring ideas to life.
-                </p>
+                    I build High-Performance mobile apps and Modern Web experiences.
+Passionate about Clean UI, Scalable Systems, and Real-world impact.                </p>
                 <div class="flex flex-wrap gap-4">
                     <a href="#portfolio" class="bg-orange-600 hover:bg-orange-700 text-white px-8 py-3 rounded-full font-medium transition-all flex items-center gap-2 shadow-lg shadow-orange-600/20">
                         My Work <i data-lucide="chevron-right" class="w-4 h-4"></i>
@@ -118,19 +119,15 @@
                 <!-- Stats -->
                 <div class="flex gap-8 pt-8 border-t border-white/10">
                     <div>
-                        <h3 class="text-3xl font-bold text-white">5+</h3>
-                        <p class="text-gray-500 text-sm">Years Exp.</p>
+                        <h3 class="text-3xl font-bold text-white">215+</h3>
+                        <b><p class="text-gray-500 text-sm">Subscribers</p></b>
                     </div>
                     <div class="w-px bg-white/10 h-12"></div>
                     <div>
-                        <h3 class="text-3xl font-bold text-white">100+</h3>
-                        <p class="text-gray-500 text-sm">Projects</p>
+                        <h3 class="text-3xl font-bold text-white">10+</h3>
+                        <b><p class="text-gray-500 text-sm">Projects</p></b>
                     </div>
                     <div class="w-px bg-white/10 h-12"></div>
-                    <div>
-                        <h3 class="text-3xl font-bold text-white">50+</h3>
-                        <p class="text-gray-500 text-sm">Clients</p>
-                    </div>
                 </div>
             </div>
 
@@ -160,7 +157,7 @@
                 <span class="text-orange-500 font-semibold tracking-wider uppercase text-sm">Interactive Feature</span>
                 <h2 class="text-3xl md:text-4xl font-bold text-white mt-2">Live HTML Playground</h2>
                 <p class="text-gray-400 mt-4 max-w-2xl mx-auto">
-                    Test your code right here on my portfolio. Type on the left, see it live on the right.
+                    Test Your Code Right here on My Portfolio.
                 </p>
             </div>
 
@@ -327,7 +324,7 @@
                     <span class="text-orange-500 font-semibold tracking-wider uppercase text-sm">Get in Touch</span>
                     <h2 class="text-4xl md:text-5xl font-bold text-white mt-2 mb-6">Let's work together</h2>
                     <p class="text-gray-400 text-lg mb-12 leading-relaxed">
-                        Have a project in mind? I'm currently available for freelance work. 
+                        Have a project in mind? 
                         Send me a message and let's discuss.
                     </p>
 
@@ -338,7 +335,7 @@
                             </div>
                             <div>
                                 <p class="text-gray-500 text-sm">Email Me</p>
-                                <p class="text-white font-medium text-lg">hello@devportfolio.com</p>
+                                <p class="text-white font-medium text-lg">codezingofficial@gmail.com</p>
                             </div>
                         </div>
                         <div class="flex items-center gap-5">
@@ -388,11 +385,11 @@
     <footer class="bg-zinc-950 border-t border-white/10 py-10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
             <div class="text-2xl font-bold text-white tracking-tighter">
-                Dev<span class="text-orange-500">.</span>Portfolio
+                Code<span class="text-orange-500"> Zing</span>
             </div>
-            <div class="text-gray-500 text-sm">
-                &copy; 2024 Alex Developer. All rights reserved.
-            </div>
+            <b><div class="text-gray-500 text-sm">
+                &copy; 2026 Code Zing - All Rights Reserved.
+            </div></b>
         </div>
     </footer>
 
@@ -433,6 +430,43 @@
         // Initial load
         updatePreview();
     </script>
+
+<script>
+document.querySelector("form").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const name = document.querySelector("input[type='text']").value;
+    const email = document.querySelector("input[type='email']").value;
+    const subject = document.querySelector("input[placeholder='Project Inquiry']").value;
+    const message = document.querySelector("textarea").value;
+
+    const botToken = "8484055647:AAERp8qtvt2CTr3mUP_4mygNr4tQfKFZfSc";
+    const chatId = "6340167379";
+
+    const text = `
+New Contact Form Submission:
+
+Name: ${name}
+Email: ${email}
+Subject: ${subject}
+Message: ${message}
+    `;
+
+    fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            chat_id: chatId,
+            text: text
+        })
+    })
+    .then(response => alert("Message sent successfully!"))
+    .catch(error => alert("Error sending message"));
+});
+</script>
+
 </body>
 </html>
 
